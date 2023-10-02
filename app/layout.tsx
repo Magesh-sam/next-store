@@ -4,6 +4,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -26,9 +28,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="flex p-3 items-center justify-end pr-5  shadow-lg ">
-            <ThemeToggle />
-          </nav>
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>
