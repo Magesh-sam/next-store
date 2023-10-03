@@ -1,10 +1,9 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
+import "@smastrom/react-rating/style.css";
 
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
 const lora = Lora({ subsets: ["latin"] });
