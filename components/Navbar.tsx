@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 function Navbar() {
   return (
-    <nav className="fixed flex w-screen items-center justify-between  p-3  pr-5 shadow-lg">
+    <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between  bg-white p-3 px-3 shadow-lg">
       <Link href="/" className="text-2xl font-semibold">
         Next-Store
       </Link>

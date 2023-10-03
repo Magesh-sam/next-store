@@ -3,7 +3,7 @@ import Product, { ProductProps } from "./Product";
 
 function ProductList({ products }: { products: ProductProps[] }) {
   return (
-    <section className="grid grid-cols-4 gap-3">
+    <section className="z-10 grid grid-cols-4 gap-3">
       {products.map((product) => (
         <Product key={product.id} {...product} />
       ))}
