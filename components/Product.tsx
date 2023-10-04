@@ -1,12 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardTitle,
-  CardFooter,
-} from "./ui/card";
+import { Card, CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
 import { Heart, ShoppingBag } from "lucide-react";
 import Link from "next/link";
@@ -22,7 +16,7 @@ export type ProductProps = {
 function Product({ title, thumbnail, price, id }: ProductProps) {
   return (
     <Link href={`/products/${id}`}>
-      <Card className="group    relative w-[280px]   max-w-[280px] overflow-hidden shadow-md hover:dark:border-primary ">
+      <Card className="group    relative w-[280px]   max-w-[280px] overflow-hidden shadow-md dark:border-primary  ">
         <CardHeader className=" items-center rounded-t-md bg-white ">
           <Image
             src={thumbnail}
@@ -34,7 +28,7 @@ function Product({ title, thumbnail, price, id }: ProductProps) {
             className="h-[250px] w-[250px] transition-all duration-200 ease-in-out "
           />
         </CardHeader>
-        <CardTitle className=" mt-2 truncate px-3 text-center text-xl  ">
+        <CardTitle className=" mt-2 truncate  px-3 text-center text-xl ">
           {title}
         </CardTitle>
         <CardFooter className="mt-2 flex items-center justify-between">

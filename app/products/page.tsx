@@ -8,7 +8,7 @@ async function page() {
     .then((res) => res.data.products);
 
   return (
-    <main className="mt-5 flex flex-col items-center justify-center gap-5">
+    <main className="mt-5 flex flex-col items-center justify-center gap-5 bg-background">
       <h1 className="text-3xl font-bold ">Products page</h1>
       <ProductList products={products} />
     </main>
