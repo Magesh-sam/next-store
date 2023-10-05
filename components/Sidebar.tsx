@@ -13,7 +13,7 @@ import { Button } from "./ui/button";
 function Sidebar() {
   return (
     <Sheet>
-      <SheetTrigger className="sm:hidden">
+      <SheetTrigger className="md:hidden">
         <GanttChart />
       </SheetTrigger>
       <SheetContent>
