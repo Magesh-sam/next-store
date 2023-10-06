@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import Sidebar from "./Sidebar";
 import { Button } from "./ui/button";
+import ShoppingCart from "./ShoppingCart";
 function Navbar() {
   return (
     <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-3 shadow-lg dark:bg-black">
@@ -19,9 +20,10 @@ function Navbar() {
           </Link>
         </Button>
       </span>
-      <span className="flex gap-3">
-        <ThemeToggle />
+      <span className="flex  gap-3">
         <Sidebar />
+        <ThemeToggle />
+        <ShoppingCart />
       </span>
     </nav>
   );
