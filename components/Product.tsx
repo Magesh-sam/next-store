@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart } from "lucide-react";
 import Link from "next/link";
+import AddToCartButton from "./AddToCartButton";
 
 export type ProductProps = {
   id: number;
@@ -14,7 +15,8 @@ export type ProductProps = {
   rating: number;
 };
 
-function Product({ title, thumbnail, price, id }: ProductProps) {
+function Product({ item }: { item: ProductProps }) {
+  const { title, thumbnail, price, id } = item;
   return (
     <Link href={`/products/${id}`}>
       <Card className="group    relative w-[280px]   max-w-[280px] overflow-hidden shadow-md dark:border-primary  ">
@@ -43,15 +45,7 @@ function Product({ title, thumbnail, price, id }: ProductProps) {
             <Heart />
           </Button>
           <p className="font-bold">${price}</p>
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Add to bag"
-            title="Add to bag"
-            className="hover:cursor-pointer hover:bg-primary hover:text-secondary  "
-          >
-            <ShoppingBag />
-          </Button>
+          <AddToCartButton item={item} />
         </CardFooter>
       </Card>
     </Link>

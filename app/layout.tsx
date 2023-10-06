@@ -1,10 +1,12 @@
-import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 import "@smastrom/react-rating/style.css";
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Navbar from "@/components/Navbar";
+
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import { Providers } from "@/redux/Providers";
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -51,15 +53,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={lora.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
