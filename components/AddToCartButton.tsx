@@ -11,7 +11,7 @@ function AddToCartButton({ item }: { item: ProductProps }) {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+    e.preventDefault();
     dispatch(addToCart(item));
   };
 
@@ -19,8 +19,8 @@ function AddToCartButton({ item }: { item: ProductProps }) {
     <Button
       variant="ghost"
       size="icon"
-      aria-label="Add to bag"
-      title="Add to bag"
+      aria-label="Add to cart"
+      title="Add to cart"
       className="hover:cursor-pointer hover:bg-primary hover:text-secondary  "
       onClick={(e) => handleAddToCart(e)}
     >

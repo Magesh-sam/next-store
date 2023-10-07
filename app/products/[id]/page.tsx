@@ -32,7 +32,7 @@ export default async function Product({ params }: { params: { id: number } }) {
               Add to Wishlist <Heart className="ml-2" />
             </Button>
             <Button>
-              Add to Card <ShoppingBag className="ml-2" />
+              Add to Cart <ShoppingBag className="ml-2" />
             </Button>
           </span>
         </section>

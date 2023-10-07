@@ -1,31 +1,33 @@
-import Link from "next/link";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTrigger,
-} from "./ui/sheet";
+"use client";
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import { ShoppingBag } from "lucide-react";
-import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
+import CartList from "./CartList";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "@/redux/store";
+import { toggleCart } from "@/redux/cartSlice";
 
 function Sidebar() {
+  const { isCartOpen } = useSelector((state: RootState) => state.cart);
+
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
-    <Sheet>
+    <Sheet open={isCartOpen} onOpenChange={() => dispatch(toggleCart())}>
       <SheetTrigger>
-        <ShoppingBag />
+        <ShoppingBag
+          onClick={() => {
+            dispatch(toggleCart);
+          }}
+        />
       </SheetTrigger>
-      <SheetContent>
-        <SheetHeader className="text-2xl font-semibold">
+      <SheetContent className="overflow-y-scroll">
+        <SheetHeader className=" text-2xl font-semibold">
           Items in the Bag
         </SheetHeader>
-        
-        <h3>item1</h3>
-        <h3>item2</h3>
-        <h3>item3</h3>
-        <h3>item4</h3>
-        <h3>item5</h3>
+        <CartList />
+        <CartList />
+        <Button>Checkout</Button>
       </SheetContent>
     </Sheet>
   );
