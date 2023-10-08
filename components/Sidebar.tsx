@@ -26,8 +26,6 @@ function Sidebar() {
           Items in the Bag
         </SheetHeader>
         <CartList />
-        <CartList />
-        <Button>Checkout</Button>
       </SheetContent>
     </Sheet>
   );
