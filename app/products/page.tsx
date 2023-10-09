@@ -1,6 +1,41 @@
+import { Metadata } from "next";
 import { ProductProps } from "@/components/Product";
 import ProductList from "@/components/ProductList";
 import axios from "axios";
+
+export const metadata: Metadata = {
+  title: "Next Store | Products",
+  description: "An E-commerce website built with Next.js, Stripe",
+  keywords: [
+    "Next.js",
+    "React",
+    "JavaScript",
+    "Stripe",
+    "E-commerce",
+    "E-commerce website",
+    "Next.js E-commerce website",
+    "Stripe checkout",
+  ],
+  authors: [
+    {
+      name: "Mageshkannan",
+      url: "https://mageshkannan.netlify.app",
+    },
+  ],
+  creator: "Mageshkannan",
+  openGraph: {
+    title: "Next Store",
+    description: "An E-commerce website built with Next.js, Stripe",
+  },
+  twitter: {
+    title: "Next Store",
+    description: "An E-commerce website built with Next.js, Stripe",
+  },
+  generator: "Next.js",
+  applicationName: "Next Store",
+  publisher: "Mageshkannan",
+  colorScheme: "dark",
+};
 
 async function page() {
   const products: ProductProps[] = await axios
