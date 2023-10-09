@@ -33,13 +33,16 @@ function Sidebar() {
         <SheetHeader className=" text-2xl font-semibold">
           Items in the Bag
         </SheetHeader>
-        <CartList />
-        <Button disabled={loading} onClick={handlePaymentCheckout}>
-          payment checkout
-        </Button>
+        {cart.length === 0 ? <p>Bag is empty😔</p> : <CartList />}
+
+        {cart.length > 0 && (
+          <Button disabled={loading} onClick={handlePaymentCheckout}>
+            payment checkout
+          </Button>
+        )}
 
         <SheetHeader className=" text-2xl font-semibold">WishList</SheetHeader>
-        <CartList />
+        {cart.length === 0 ? <p>Wishlist is empty😔</p> : <CartList />}
       </SheetContent>
     </Sheet>
   );
