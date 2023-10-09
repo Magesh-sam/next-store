@@ -12,7 +12,6 @@ function CartList() {
       {cart.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}
-      <Button onClick={() => handleCheckout(cart)}>payment checkout</Button>
     </section>
   );
 }

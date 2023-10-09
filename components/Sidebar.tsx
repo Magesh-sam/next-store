@@ -6,8 +6,9 @@ import CartList from "./CartList";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/redux/store";
 import { toggleCart } from "@/redux/Slices/cartSlice";
+import { handleCheckout } from "@/stripe/checkout";
 function Sidebar() {
-  const { isCartOpen } = useSelector((state: RootState) => state.cart);
+  const { isCartOpen, cart } = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -24,6 +25,10 @@ function Sidebar() {
         <SheetHeader className=" text-2xl font-semibold">
           Items in the Bag
         </SheetHeader>
+        <CartList />
+        <Button onClick={() => handleCheckout(cart)}>payment checkout</Button>
+
+        <SheetHeader className=" text-2xl font-semibold">WishList</SheetHeader>
         <CartList />
       </SheetContent>
     </Sheet>
