@@ -12,9 +12,7 @@ function CartList() {
       {cart.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}
-      <Button variant="ghost" onClick={() => handleCheckout(cart)}>
-        payment checkout
-      </Button>
+      <Button onClick={() => handleCheckout(cart)}>payment checkout</Button>
     </section>
   );
 }

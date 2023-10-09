@@ -5,8 +5,7 @@ import { Button } from "./ui/button";
 import CartList from "./CartList";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/redux/store";
-import { toggleCart } from "@/redux/cartSlice";
-
+import { toggleCart } from "@/redux/Slices/cartSlice";
 function Sidebar() {
   const { isCartOpen } = useSelector((state: RootState) => state.cart);
 

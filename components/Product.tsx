@@ -19,7 +19,7 @@ function Product({ item }: { item: ProductProps }) {
   const { title, thumbnail, price, id } = item;
   return (
     <Link href={`/products/${id}`}>
-      <Card className="group    relative w-[280px]   max-w-[280px] overflow-hidden shadow-md dark:border-primary  ">
+      <Card className="  group  relative w-[280px]   max-w-[280px] overflow-hidden bg-background shadow-md hover:border-primary dark:bg-[#383838] ">
         <CardHeader className=" items-center rounded-t-md bg-white ">
           <Image
             src={thumbnail}
