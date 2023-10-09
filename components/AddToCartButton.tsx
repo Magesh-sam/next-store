@@ -20,7 +20,7 @@ function AddToCartButton({ item }: { item: ProductProps }) {
       size="icon"
       aria-label="Add to cart"
       title="Add to cart"
-      className="hover:cursor-pointer hover:bg-primary hover:text-secondary  "
+      className="hover:cursor-pointer hover:bg-primary hover:text-secondary "
       onClick={(e) => handleAddToCart(e)}
     >
       <ShoppingBag />

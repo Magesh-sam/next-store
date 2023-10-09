@@ -7,10 +7,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/redux/store";
 import { toggleCart } from "@/redux/Slices/cartSlice";
 import { handleCheckout } from "@/stripe/checkout";
+import { useState } from "react";
 function Sidebar() {
   const { isCartOpen, cart } = useSelector((state: RootState) => state.cart);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
+
+  const handlePaymentCheckout = async () => {
+    setLoading(true);
+    await handleCheckout(cart);
+    setLoading(false);
+  };
 
   return (
     <Sheet open={isCartOpen} onOpenChange={() => dispatch(toggleCart())}>
@@ -26,7 +34,9 @@ function Sidebar() {
           Items in the Bag
         </SheetHeader>
         <CartList />
-        <Button onClick={() => handleCheckout(cart)}>payment checkout</Button>
+        <Button disabled={loading} onClick={handlePaymentCheckout}>
+          payment checkout
+        </Button>
 
         <SheetHeader className=" text-2xl font-semibold">WishList</SheetHeader>
         <CartList />
