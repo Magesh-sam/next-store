@@ -1,14 +1,27 @@
 import axios from "axios";
 import Image from "next/image";
 import { ProductProps } from "@/components/Product";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Rating } from "@smastrom/react-rating";
 
 export default async function Product({ params }: { params: { id: number } }) {
-  const data: ProductProps = await axios
-    .get(`https://dummyjson.com/products/${params.id}`)
-    .then((res) => res.data);
+  if (params.id <= 0 || params.id > 100) {
+    return (
+      <main className="flex h-screen w-screen flex-col items-center justify-center gap-3 ">
+        <h1 className="text-3xl font-semibold">Product not found</h1>
+
+        <Button asChild>
+          <Link href="/products">Back to Shopping🛍️</Link>
+        </Button>
+      </main>
+    );
+  }
+
+  const { data }: { data: ProductProps } = await axios.get(
+    `https://dummyjson.com/products/${params.id}`,
+  );
 
   return (
     <main className=" flex h-screen w-screen  items-center justify-center  ">
