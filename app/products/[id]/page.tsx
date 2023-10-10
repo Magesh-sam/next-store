@@ -5,8 +5,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Rating } from "@smastrom/react-rating";
+import { notFound } from "next/navigation";
 
 export default async function Product({ params }: { params: { id: number } }) {
+  if (typeof params.id === "string") return notFound();
+
   if (params.id <= 0 || params.id > 100) {
     return (
       <main className="flex h-screen w-screen flex-col items-center justify-center gap-3 ">
