@@ -1,4 +1,4 @@
-import { ProductProps } from "@/components/Product";
+import { ProductProps } from "@/types/types";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 

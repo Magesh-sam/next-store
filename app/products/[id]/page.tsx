@@ -1,11 +1,11 @@
 import axios from "axios";
 import Image from "next/image";
-import { ProductProps } from "@/components/Product";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Rating } from "@smastrom/react-rating";
 import { notFound } from "next/navigation";
+import { ProductProps } from "@/types/types";
 
 export default async function Product({ params }: { params: { id: number } }) {
   if (typeof params.id === "string") return notFound();

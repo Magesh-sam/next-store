@@ -1,10 +1,7 @@
-import { ProductProps } from "./Product";
+import { ProductProps } from "@/types/types";
 import Image from "next/image";
-import { Button } from "./ui/button";
-import { Trash2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { removeFromCart } from "@/redux/Slices/cartSlice";
 import { DeleteDialog } from "./DeleteDialog";
 
 function CartItem({ item }: { item: ProductProps }) {

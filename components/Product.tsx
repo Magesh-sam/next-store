@@ -5,16 +5,7 @@ import { Button } from "./ui/button";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import AddToCartButton from "./AddToCartButton";
-
-export type ProductProps = {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-  price: number;
-  rating: number;
-};
-
+import { ProductProps } from "@/types/types";
 function Product({ item }: { item: ProductProps }) {
   const { title, thumbnail, price, id } = item;
   return (

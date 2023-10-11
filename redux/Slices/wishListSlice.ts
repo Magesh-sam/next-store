@@ -1,4 +1,4 @@
-import { ProductProps } from "@/components/Product";
+import { ProductProps } from "@/types/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ProductProps } from "@/components/Product";
+import { ProductProps } from "@/types/types";
 import ProductList from "@/components/ProductList";
 import axios from "axios";
 

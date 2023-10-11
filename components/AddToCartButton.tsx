@@ -3,7 +3,7 @@ import { ShoppingBag } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
 import { useDispatch } from "react-redux";
-import { ProductProps } from "./Product";
+import { ProductProps } from "@/types/types";
 import { AppDispatch } from "@/redux/store";
 import { addToCart } from "@/redux/Slices/cartSlice";
 function AddToCartButton({ item }: { item: ProductProps }) {

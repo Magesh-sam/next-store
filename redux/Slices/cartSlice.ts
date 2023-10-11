@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductProps } from "@/components/Product";
-
+import { ProductProps } from "@/types/types";
 const initialState = {
   cart: [] as ProductProps[],
   isCartOpen: false,
