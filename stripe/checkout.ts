@@ -6,7 +6,6 @@ export const handleCheckout = async (products: ProductProps[]) => {
   const checkoutSession = await axios.post("/api/checkout", {
     products,
   });
-  console.log(checkoutSession.data);
   const result = await stripe!.redirectToCheckout({
     sessionId: checkoutSession.data.id,
   });
