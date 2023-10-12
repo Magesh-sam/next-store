@@ -3,6 +3,7 @@ import Product from "./Product";
 import ScrollToTop from "./ScrollToTop";
 import { useState, useMemo } from "react";
 import { ProductProps } from "@/types/types";
+import SearchBar from "./SearchBar";
 
 function ProductList({ products }: { products: ProductProps[] }) {
   const [searchValue, setSearchValue] = useState("");
@@ -31,11 +32,12 @@ function ProductList({ products }: { products: ProductProps[] }) {
         className="p-3"
         onChange={(e) => handleSearch(e)}
       />
+      <SearchBar />
       <section className="z-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredProducts.map((product) => (
           <Product key={product.id} item={product} />
         ))}
-        <ScrollToTop />
+        <ScrollToTop />S
       </section>
     </section>
   );
