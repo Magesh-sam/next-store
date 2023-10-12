@@ -8,8 +8,9 @@ import AddToCartButton from "./AddToCartButton";
 import { ProductProps } from "@/types/types";
 function Product({ item }: { item: ProductProps }) {
   const { title, thumbnail, price, id } = item;
+  const path = "/products/" + id;
   return (
-    <Link href={`/products/${id}`}>
+    <Link href={path}>
       <Card className="  group  relative w-[280px]   max-w-[280px] overflow-hidden bg-background shadow-md hover:border-primary dark:bg-[#383838] ">
         <CardHeader className=" items-center rounded-t-md bg-white ">
           <Image

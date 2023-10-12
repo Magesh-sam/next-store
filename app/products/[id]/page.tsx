@@ -7,10 +7,14 @@ import { Rating } from "@smastrom/react-rating";
 import { notFound } from "next/navigation";
 import { ProductProps } from "@/types/types";
 
-export default async function Product({ params }: { params: { id: number } }) {
-  if (typeof params.id === "string") return notFound();
+export default async function SingleProduct({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const productId = parseInt(params.id);
 
-  if (params.id <= 0 || params.id > 100) {
+  if (productId <= 0 || productId > 100) {
     return (
       <main className="flex h-screen w-screen flex-col items-center justify-center gap-3 ">
         <h1 className="text-3xl font-semibold">Product not found</h1>
@@ -21,9 +25,9 @@ export default async function Product({ params }: { params: { id: number } }) {
       </main>
     );
   }
-
+  console.log(productId);
   const { data }: { data: ProductProps } = await axios.get(
-    `https://dummyjson.com/products/${params.id}`,
+    `https://dummyjson.com/products/${productId}`,
   );
 
   return (
