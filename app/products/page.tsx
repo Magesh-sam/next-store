@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ProductProps } from "@/types/types";
 import ProductList from "@/components/ProductList";
 import axios from "axios";
+import Categories from "@/components/Categories";
 
 export const metadata: Metadata = {
   title: "Next Store | Products",
@@ -43,8 +44,8 @@ async function page() {
     .then((res) => res.data.products);
 
   return (
-    <main className="mt-5 flex flex-col items-center justify-center gap-5 bg-background">
-      <h1 className="text-3xl font-bold ">Products page</h1>
+    <main className=" flex gap-5 bg-background">
+      <Categories />
       <ProductList products={products} />
     </main>
   );

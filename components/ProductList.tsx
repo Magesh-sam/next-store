@@ -24,7 +24,7 @@ function ProductList({ products }: { products: ProductProps[] }) {
   };
 
   return (
-    <>
+    <section className="mx-auto mt-20 flex flex-col gap-5 bg-background">
       <input
         type="text"
         placeholder="Search Products"
@@ -37,7 +37,7 @@ function ProductList({ products }: { products: ProductProps[] }) {
         ))}
         <ScrollToTop />
       </section>
-    </>
+    </section>
   );
 }
 
