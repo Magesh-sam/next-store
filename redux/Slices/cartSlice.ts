@@ -5,7 +5,6 @@ const initialState = {
   isCartOpen: false,
 };
 
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
