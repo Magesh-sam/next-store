@@ -7,6 +7,65 @@ import { Rating } from "@smastrom/react-rating";
 import { ProductProps } from "@/types/types";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const productId = parseInt(params.id);
+
+  const { data }: { data: ProductProps } = await axios.get(
+    `https://dummyjson.com/products/${productId}`,
+  );
+  return {
+    title: data.title,
+    description: data.description,
+    keywords: [
+      "Next.js",
+      "React",
+      "JavaScript",
+      "Stripe",
+      "E-commerce",
+      "E-commerce website",
+      "Next.js E-commerce website",
+      "Stripe checkout",
+      data.title,
+      data.brand,
+    ],
+    authors: [
+      {
+        name: "Mageshkannan",
+        url: "https://mageshkannan.netlify.app",
+      },
+    ],
+    creator: "Mageshkannan",
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      images: [
+        {
+          url: data.thumbnail,
+          width: 800,
+          height: 600,
+          alt: data.title,
+        },
+      ],
+    },
+    twitter: {
+      title: data.title,
+      description: data.description,
+      images: [
+        {
+          url: data.thumbnail,
+          width: 800,
+          height: 600,
+          alt: data.title,
+        },
+      ],
+    },
+    generator: "Next.js",
+    applicationName: "Next Store",
+    publisher: "Mageshkannan",
+    colorScheme: "dark",
+  };
+}
+
 export default async function SingleProduct({
   params,
 }: {
