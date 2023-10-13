@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Rating } from "@smastrom/react-rating";
-import { notFound } from "next/navigation";
 import { ProductProps } from "@/types/types";
+import { notFound } from "next/navigation";
 
 export default async function SingleProduct({
   params,
@@ -13,6 +13,10 @@ export default async function SingleProduct({
   params: { id: string };
 }) {
   const productId = parseInt(params.id);
+
+  if (isNaN(productId)) {
+    notFound();
+  }
 
   if (productId <= 0 || productId > 100) {
     return (
@@ -25,7 +29,6 @@ export default async function SingleProduct({
       </main>
     );
   }
-  console.log(productId);
   const { data }: { data: ProductProps } = await axios.get(
     `https://dummyjson.com/products/${productId}`,
   );
