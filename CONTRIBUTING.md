@@ -1,5 +1,11 @@
 ## Pull Request Guidelines
 
+### Features to add
+
+- Authentication
+- Unit and Integration tests
+- Responsiveness
+
 **How to create a pull request**
 
 1. Fork the repository.
