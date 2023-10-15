@@ -25,11 +25,12 @@ function SearchBar() {
       <input
         type="search"
         name="product search"
-        placeholder="Search Products... from usesearchparams"
+        placeholder="Search Products..."
         value={Query}
         onChange={(e) => {
           setQuery(e.target.value);
         }}
+        className="flex-1"
       />
       <Button
         variant={"outline"}

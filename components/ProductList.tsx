@@ -26,12 +26,6 @@ function ProductList({ products }: { products: ProductProps[] }) {
 
   return (
     <section className="mx-auto mt-20 flex flex-col gap-5 bg-background">
-      <input
-        type="text"
-        placeholder="Search Products"
-        className="p-3"
-        onChange={(e) => handleSearch(e)}
-      />
       <SearchBar />
       <section className="z-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredProducts.map((product) => (
