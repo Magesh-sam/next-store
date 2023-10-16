@@ -31,10 +31,11 @@ function ProductList({ products }: { products: ProductProps[] }) {
         {filteredProducts.map((product) => (
           <Product key={product.id} item={product} />
         ))}
-        <ScrollToTop />S
+        <ScrollToTop />
       </section>
     </section>
   );
 }
 
 export default ProductList;
+
