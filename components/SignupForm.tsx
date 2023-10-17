@@ -1,6 +1,13 @@
 "use client";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from "firebase/auth";
+import { auth } from "@/firebase/firebase";
 type FieldValues = {
   fullName: string;
   email: string;
@@ -9,6 +16,19 @@ type FieldValues = {
 };
 
 const SignupForm = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        router.replace("/");
+        console.log(user);
+      } else {
+        router.replace("/signup");
+      }
+    });
+  });
+
   const {
     control,
     handleSubmit,
@@ -16,7 +36,7 @@ const SignupForm = () => {
     formState: { errors },
   } = useForm<FieldValues>();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const { fullName, email, password, reenterPassword } = data;
 
     if (password !== reenterPassword) {
@@ -27,7 +47,20 @@ const SignupForm = () => {
       return;
     }
 
-    console.log(data);
+    try {
+      const newUser = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      await updateProfile(newUser.user, {
+        displayName: fullName,
+      });
+      await sendEmailVerification(newUser.user);
+      router.replace("/");
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
