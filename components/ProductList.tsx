@@ -38,4 +38,3 @@ function ProductList({ products }: { products: ProductProps[] }) {
 }
 
 export default ProductList;
-
