@@ -33,29 +33,30 @@ function UserButton() {
 
   return (
     <>
-      {!userName && (
+      {!userName ? (
         <Button>
           <Link href="/login">Login</Link>
         </Button>
+      ) : (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Button size={"icon"} className="full-rounded">
+              {userName && userName[0]}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Hello, {userName}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => dispatch(toggleCart())}>
+              View Cart
+            </DropdownMenuItem>
+            <DropdownMenuItem>View Wishlist</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignout}>
+              <Button className="flex-1">Signout</Button>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       )}
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Button size={"icon"} className="full-rounded">
-            {userName && userName[0]}
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Hello, {userName}</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => dispatch(toggleCart())}>
-            View Cart
-          </DropdownMenuItem>
-          <DropdownMenuItem>View Wishlist</DropdownMenuItem>
-          <DropdownMenuItem onClick={handleSignout}>
-            <Button className="flex-1">Signout</Button>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </>
   );
 }
