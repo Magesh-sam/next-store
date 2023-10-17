@@ -14,6 +14,7 @@ import Link from "next/link";
 import { toggleCart } from "@/redux/Slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
+import { User } from "lucide-react";
 
 function UserButton() {
   const [userName, setUserName] = useState<string | null>("");
@@ -31,33 +32,41 @@ function UserButton() {
     await auth.signOut();
   };
 
+  // TODO: Replace with navigation menu | replicate flipkart login
   return (
-    <>
-      {!userName ? (
-        <Button>
-          <Link href="/login">Login</Link>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Button size={"icon"} className="full-rounded">
+          <User />
         </Button>
-      ) : (
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button size={"icon"} className="full-rounded">
-              {userName && userName[0]}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {userName ? (
+          <DropdownMenuLabel>Hello, {userName}</DropdownMenuLabel>
+        ) : (
+          <DropdownMenuLabel>
+            New user? <Link href={"/signup"}>Signup</Link>
+          </DropdownMenuLabel>
+        )}
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => dispatch(toggleCart())}>
+          View Cart
+        </DropdownMenuItem>
+        <DropdownMenuItem>View Wishlist</DropdownMenuItem>
+        {!userName && (
+          <DropdownMenuItem>
+            <Button className="flex-1">
+              <Link href={"/login"}>Login</Link>
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Hello, {userName}</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => dispatch(toggleCart())}>
-              View Cart
-            </DropdownMenuItem>
-            <DropdownMenuItem>View Wishlist</DropdownMenuItem>
-            <DropdownMenuItem onClick={handleSignout}>
-              <Button className="flex-1">Signout</Button>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )}
-    </>
+          </DropdownMenuItem>
+        )}
+        {userName && (
+          <DropdownMenuItem onClick={handleSignout}>
+            <Button className="flex-1">Signout</Button>
+          </DropdownMenuItem>
+        )}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
