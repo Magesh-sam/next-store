@@ -1,6 +1,8 @@
 import "./globals.css";
 import "@smastrom/react-rating/style.css";
 
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 
@@ -54,17 +56,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={lora.className}>
-        <Providers>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
-            {children}
-          </ThemeProvider>
-        </Providers>
+        <UserProvider>
+          <Providers>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              {children}
+            </ThemeProvider>
+          </Providers>
+        </UserProvider>
       </body>
     </html>
   );
