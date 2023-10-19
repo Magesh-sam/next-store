@@ -1,2 +1,3 @@
 # Next Store
-**an e-commerce site built with next js, typescript, tailwind css, stripe and auth0**
+
+**An E-commerce site built with next js, stripe, auth0, typescript and tailwind css**
