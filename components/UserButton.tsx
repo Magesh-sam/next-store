@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
-import { auth } from "@/firebase/firebase";
+
+import { useUser } from "@auth0/nextjs-auth0/client";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -9,65 +9,54 @@ import {
   DropdownMenuSeparator,
   DropdownMenuItem,
 } from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import Link from "next/link";
-import { toggleCart } from "@/redux/Slices/cartSlice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
 import { User } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
-function UserButton() {
-  const [userName, setUserName] = useState<string | null>("");
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUserName(user.displayName);
-      } else {
-        setUserName("");
-      }
-    });
-  });
-  const dispatch = useDispatch<AppDispatch>();
-  const handleSignout = async () => {
-    await auth.signOut();
-  };
+export default function UserButton() {
+  const { user } = useUser();
 
-  // TODO: Replace with navigation menu | replicate flipkart login
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Button size={"icon"} className="full-rounded">
-          <User />
-        </Button>
+        {user ? (
+          <Avatar>
+            <AvatarImage src={user.picture ?? ""} />
+            <AvatarFallback>{user?.name?.at(0)}</AvatarFallback>
+          </Avatar>
+        ) : (
+          <Avatar className="flex items-center justify-center">
+            <User />
+          </Avatar>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {userName ? (
-          <DropdownMenuLabel>Hello, {userName}</DropdownMenuLabel>
-        ) : (
+        {!user && (
           <DropdownMenuLabel>
-            New user? <Link href={"/signup"}>Signup</Link>
+            new user?{" "}
+            <Link href="/api/auth/login" className="text-primary">
+              signup
+            </Link>
           </DropdownMenuLabel>
         )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => dispatch(toggleCart())}>
-          View Cart
-        </DropdownMenuItem>
+        <DropdownMenuItem>View Cart</DropdownMenuItem>
         <DropdownMenuItem>View Wishlist</DropdownMenuItem>
-        {!userName && (
-          <DropdownMenuItem>
-            <Button className="flex-1">
-              <Link href={"/login"}>Login</Link>
-            </Button>
+        {user ? (
+          <DropdownMenuItem onClick={() => router.replace("/api/auth/logout")}>
+            Logout
           </DropdownMenuItem>
-        )}
-        {userName && (
-          <DropdownMenuItem onClick={handleSignout}>
-            <Button className="flex-1">Signout</Button>
+        ) : (
+          <DropdownMenuItem onClick={() => router.replace("/api/auth/login")}>
+            {" "}
+            Login
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
-
-export default UserButton;

@@ -22,7 +22,7 @@ function Navbar() {
         </Button>
       </span>
       <span className="flex  gap-3">
-        {/* <UserButton /> */}
+        <UserButton />
         <Sidebar />
         <ThemeToggle />
         <ShoppingCart />
