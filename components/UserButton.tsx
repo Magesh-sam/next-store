@@ -13,12 +13,16 @@ import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import Link from "next/link";
 import { User } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
+import { toggleCart } from "@/redux/Slices/cartSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 
 export default function UserButton() {
   const { user } = useUser();
 
   const router = useRouter();
+
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <DropdownMenu>
@@ -44,7 +48,9 @@ export default function UserButton() {
           </DropdownMenuLabel>
         )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>View Cart</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => dispatch(toggleCart())}>
+          View Cart
+        </DropdownMenuItem>
         <DropdownMenuItem>View Wishlist</DropdownMenuItem>
         {user ? (
           <DropdownMenuItem onClick={() => router.replace("/api/auth/logout")}>
@@ -52,7 +58,6 @@ export default function UserButton() {
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem onClick={() => router.replace("/api/auth/login")}>
-            {" "}
             Login
           </DropdownMenuItem>
         )}
