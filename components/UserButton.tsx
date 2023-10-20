@@ -18,11 +18,12 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 
 export default function UserButton() {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
 
   const router = useRouter();
 
   const dispatch = useDispatch<AppDispatch>();
+  if (isLoading) return <> </>;
 
   return (
     <DropdownMenu>
