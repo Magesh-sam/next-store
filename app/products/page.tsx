@@ -3,6 +3,7 @@ import { ProductProps } from "@/types/types";
 import ProductList from "@/components/ProductList";
 import axios from "axios";
 import Categories from "@/components/Categories";
+import CategoryMobile from "@/components/CategoryMobile";
 
 export const metadata: Metadata = {
   title: "Next Store | Products",

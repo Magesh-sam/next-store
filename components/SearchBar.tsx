@@ -35,6 +35,7 @@ function SearchBar() {
       <Button
         variant={"outline"}
         size={"icon"}
+        className="border border-primary"
         onClick={() => {
           router.replace(
             "/products/search" + "?" + createQueryString("q", Query),
