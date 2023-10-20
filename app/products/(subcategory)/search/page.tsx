@@ -1,5 +1,6 @@
 import ProductList from "@/components/ProductList";
 import axios from "axios";
+import { notFound } from "next/navigation";
 
 export default async function Query({
   searchParams,
@@ -9,6 +10,10 @@ export default async function Query({
   const data = await axios
     .get(`https://dummyjson.com/products/search?q=${searchParams.q}`)
     .then((res) => res.data.products);
+
+  if (data.length === 0) {
+    return notFound();
+  }
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center">
