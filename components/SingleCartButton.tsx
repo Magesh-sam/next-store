@@ -2,27 +2,32 @@
 import { ShoppingBag } from "lucide-react";
 import { Button } from "./ui/button";
 import { ProductProps } from "@/types/types";
+
+import { collection, addDoc } from "firebase/firestore";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import setCart from "@/kv/setCart";
-import getCart from "@/kv/getCart";
+import { db } from "@/firebase/config";
+
 function SingleCartButton({ product }: { product: ProductProps }) {
   const { user, error, isLoading } = useUser();
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-  const addToCart = async (item: ProductProps) => {
-    const userID = user?.email;
-    //@ts-ignore
-    await setCart({ key: userID, value: item });
-    //@ts-ignore
-    await getCart({ key: userID });
+  const uid = user?.email;
+
+  const addToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    try {
+      const docRef = await addDoc(collection(db, "cartitems"), {
+        image: product.thumbnail,
+        title: product.title,
+        price: product.price,
+        quantity: 1,
+        uid,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (err) {
+      console.error("Error adding document: ", err);
+    }
   };
 
   return (
-    <Button onClick={() => addToCart(product)}>
+    <Button onClick={addToCart}>
       Add to Cart <ShoppingBag className="ml-2" />
     </Button>
   );
