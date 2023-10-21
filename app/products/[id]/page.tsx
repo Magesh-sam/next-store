@@ -6,6 +6,7 @@ import { Heart, ShoppingBag } from "lucide-react";
 import { Rating } from "@smastrom/react-rating";
 import { ProductProps } from "@/types/types";
 import { notFound } from "next/navigation";
+import SingleCartButton from "@/components/SingleCartButton";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const productId = parseInt(params.id);
@@ -113,9 +114,7 @@ export default async function SingleProduct({
             <Button className="bg-[#2B6AEB] hover:bg-[#2B6AEB]/90">
               Add to Wishlist <Heart className="ml-2" />
             </Button>
-            <Button>
-              Add to Cart <ShoppingBag className="ml-2" />
-            </Button>
+            <SingleCartButton product={data} />
           </span>
         </section>
       </div>
