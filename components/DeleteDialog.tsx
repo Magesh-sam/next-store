@@ -20,15 +20,8 @@ export function DeleteDialog({ id }: { id: number }) {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button
-          variant={"ghost"}
-          size={"icon"}
-          aria-label="delete item"
-          className="absolute right-0 top-0 rounded-full hover:bg-red-400"
-        >
-          <Trash2 />
-        </Button>
+      <AlertDialogTrigger className="mx-auto  mt-3 flex items-center justify-between rounded-lg bg-red-400 p-2">
+        <span>Remove Item</span> <Trash2 />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
