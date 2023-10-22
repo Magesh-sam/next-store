@@ -42,7 +42,7 @@ export default function UserButton() {
       <DropdownMenuContent>
         {!user && (
           <DropdownMenuLabel>
-            new user?{" "}
+            new user?
             <Link href="/api/auth/login" className="text-primary">
               signup
             </Link>
