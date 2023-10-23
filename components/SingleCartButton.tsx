@@ -17,6 +17,7 @@ function SingleCartButton({ product }: { product: ProductProps }) {
         image: product.thumbnail,
         title: product.title,
         price: product.price,
+        productId: Date.now(),
         quantity: 1,
         uid,
       });
