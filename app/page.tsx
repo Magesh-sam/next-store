@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Next Store | Products",
+  title: "Next Store",
   description: "An E-commerce website built with Next.js, Stripe",
   keywords: [
     "Next.js",
