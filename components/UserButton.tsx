@@ -49,10 +49,12 @@ export default function UserButton() {
           </DropdownMenuLabel>
         )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => dispatch(toggleCart())}>
+        <DropdownMenuItem onClick={() => router.replace("/cart")}>
           View Cart
         </DropdownMenuItem>
-        <DropdownMenuItem>View Wishlist</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.replace("/wishlist")}>
+          View Wishlist
+        </DropdownMenuItem>
         {user ? (
           <DropdownMenuItem onClick={() => router.replace("/api/auth/logout")}>
             Logout

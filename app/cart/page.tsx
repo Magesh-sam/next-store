@@ -4,22 +4,19 @@ import { db } from "@/firebase/config";
 import { getSession } from "@auth0/nextjs-auth0";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 export default async function Cart() {
   const session = await getSession();
   const user = session?.user;
-  const cartitemsRef = collection(db, "cartitems");
   if (!user) {
-    return (
-      <>
-        <CartList />
-      </>
-    );
+    redirect("/localcart");
   }
 
+  const cartitemsRef = collection(db, "cartitems");
   const q = query(cartitemsRef, where("uid", "==", user?.email));
   const querySnapshot = await getDocs(q);
- 
+
   const data = querySnapshot.docs.map((doc) => doc.data());
   const dataId = querySnapshot.docs.map((doc) => doc.id);
   const cartItems = data.map((item, index) => {
