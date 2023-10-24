@@ -19,13 +19,10 @@ export default async function Cart() {
 
   const q = query(cartitemsRef, where("uid", "==", user?.email));
   const querySnapshot = await getDocs(q);
-  console.log(
-    "Snapshot",
-    querySnapshot.docs.map((doc) => doc.id),
-  );
+ 
   const data = querySnapshot.docs.map((doc) => doc.data());
   const dataId = querySnapshot.docs.map((doc) => doc.id);
-  const finalItems = data.map((item, index) => {
+  const cartItems = data.map((item, index) => {
     return {
       id: dataId[index],
       image: item.image,
@@ -38,7 +35,7 @@ export default async function Cart() {
     <main className="flex h-screen w-screen flex-col items-center justify-center">
       <h1>Cart</h1>
 
-      {finalItems.map((item) => (
+      {cartItems.map((item) => (
         <div key={item.id} className="flex">
           <Image src={item.image} alt={item.title} width={200} height={200} />
           <div className="flex flex-col">

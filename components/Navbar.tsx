@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import Sidebar from "./Sidebar";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import ShoppingCart from "./ShoppingCart";
 import UserButton from "./UserButton";
+import { ShoppingBag } from "lucide-react";
 function Navbar() {
   return (
     <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-3 shadow-lg dark:bg-black">
@@ -23,9 +24,12 @@ function Navbar() {
       </span>
       <span className="flex  gap-3">
         <UserButton />
-        <Sidebar />
+        {/* <Sidebar /> */}
         <ThemeToggle />
-        <ShoppingCart />
+        <Link href='/cart' className={buttonVariants({ variant: "ghost" ,size:"icon"})}  >
+          <ShoppingBag/>
+        </Link>
+        {/* <ShoppingCart /> */}
       </span>
     </nav>
   );
