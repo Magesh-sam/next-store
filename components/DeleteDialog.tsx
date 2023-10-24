@@ -9,7 +9,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import { removeFromCart } from "@/redux/Slices/cartSlice";
 import { AppDispatch } from "@/redux/store";
 import { Trash2 } from "lucide-react";

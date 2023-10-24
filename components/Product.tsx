@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardFooter } from "./ui/card";
-import { Button } from "./ui/button";
-import { Heart } from "lucide-react";
 import Link from "next/link";
 import AddToCartButton from "./AddToCartButton";
 import { ProductProps } from "@/types/types";
+import AddToWishlistButton from "./AddToWishlistButton";
 function Product({ item }: { item: ProductProps }) {
   const { title, thumbnail, price, id } = item;
   const path = "/products/" + id;
@@ -27,15 +26,7 @@ function Product({ item }: { item: ProductProps }) {
           {title}
         </CardTitle>
         <CardFooter className="mt-2 flex items-center justify-between">
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Add to wishlist"
-            title="Add to wishlist"
-            className="hover:cursor-pointer hover:bg-primary hover:text-secondary "
-          >
-            <Heart />
-          </Button>
+          <AddToWishlistButton product={item} />
           <p className="font-bold">${price}</p>
           <AddToCartButton item={item} />
         </CardFooter>
