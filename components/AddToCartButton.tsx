@@ -7,7 +7,7 @@ import { ProductProps } from "@/types/types";
 import { AppDispatch } from "@/redux/store";
 import { addToCart } from "@/redux/Slices/cartSlice";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import {  useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 function AddToCartButton({ item: product }: { item: ProductProps }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +22,7 @@ function AddToCartButton({ item: product }: { item: ProductProps }) {
     if (!user) {
       dispatch(addToCart(product));
       router.replace("/localcart");
+      router.refresh();
     }
 
     const uid = user?.email;

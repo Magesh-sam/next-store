@@ -2,11 +2,12 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingBag } from "lucide-react";
 import { Rating } from "@smastrom/react-rating";
 import { ProductProps } from "@/types/types";
 import { notFound } from "next/navigation";
 import SingleCartButton from "@/components/SingleCartButton";
+import SingleWishlistButton from "@/components/SingleWishlistButton";
+import { getSession } from "@auth0/nextjs-auth0";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const productId = parseInt(params.id);
@@ -89,6 +90,9 @@ export default async function SingleProduct({
       </main>
     );
   }
+  const session = await getSession();
+  const uid = session?.user?.email;
+  console.log("single product page session", uid);
   const { data }: { data: ProductProps } = await axios.get(
     `https://dummyjson.com/products/${productId}`,
   );
@@ -111,9 +115,7 @@ export default async function SingleProduct({
             <Rating value={data.rating} readOnly />
           </div>
           <span className="flex justify-between">
-            <Button className="bg-[#2B6AEB] hover:bg-[#2B6AEB]/90">
-              Add to Wishlist <Heart className="ml-2" />
-            </Button>
+            <SingleWishlistButton product={data} />
             <SingleCartButton product={data} />
           </span>
         </section>
