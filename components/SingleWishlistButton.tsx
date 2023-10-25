@@ -2,14 +2,14 @@
 import { Heart } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
-import { ProductProps } from "@/types/types";
-import { useToast } from "./ui/use-toast";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { ToastAction } from "./ui/toast";
-import { useRouter } from "next/navigation";
 import axios from "axios";
+import { ToastAction } from "./ui/toast";
+import { useToast } from "./ui/use-toast";
+import { ProductProps } from "@/types/types";
+import { useRouter } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
-function AddToWishlistButton({ product }: { product: ProductProps }) {
+function SingleWishlistButton({ product }: { product: ProductProps }) {
   const { toast } = useToast();
   const { user, isLoading } = useUser();
   const router = useRouter();
@@ -18,10 +18,8 @@ function AddToWishlistButton({ product }: { product: ProductProps }) {
     return <> </>;
   }
   const uid = user?.email;
-  const handleAddToWishlist = async (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    e.preventDefault();
+
+  const handleAddToWishlist = async () => {
     if (!uid || uid.length === 0) {
       toast({
         title: "Login required",
@@ -36,8 +34,8 @@ function AddToWishlistButton({ product }: { product: ProductProps }) {
           </ToastAction>
         ),
       });
+      return;
     }
-
     await axios
       .post("/api/addtowishlist", { product, uid })
       .then(() => {
@@ -57,16 +55,12 @@ function AddToWishlistButton({ product }: { product: ProductProps }) {
   };
   return (
     <Button
-      variant="ghost"
-      size="icon"
-      aria-label="Add to wishlist"
-      title="Add to wishlist"
-      className="hover:cursor-pointer hover:bg-primary hover:text-secondary "
-      onClick={(e) => handleAddToWishlist(e)}
+      className="bg-[#2B6AEB] hover:bg-[#2B6AEB]/90"
+      onClick={handleAddToWishlist}
     >
-      <Heart />
+      Add to Wishlist <Heart className="ml-2" />
     </Button>
   );
 }
 
-export default AddToWishlistButton;
+export default SingleWishlistButton;

@@ -3,40 +3,38 @@ import { ShoppingBag } from "lucide-react";
 import { Button } from "./ui/button";
 import { ProductProps } from "@/types/types";
 
-import { collection, addDoc } from "firebase/firestore";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { db } from "@/firebase/config";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/Slices/cartSlice";
+import axios from "axios";
+import { useToast } from "./ui/use-toast";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 function SingleCartButton({ product }: { product: ProductProps }) {
-  const { user, error, isLoading } = useUser();
-  const router = useRouter();
-  const uid = user?.email;
   const dispatch = useDispatch();
+  const { toast } = useToast();
+  const { user, isLoading } = useUser();
+  const router = useRouter();
+
   if (isLoading) {
     return <> </>;
   }
-  const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("Adding to cart button working");
-    if (!user) {
+  const uid = user?.email;
+
+  const handleAddToCart = async () => {
+    if (!uid || uid.length === 0) {
       dispatch(addToCart(product));
       router.replace("/localcart");
+      router.refresh();
     }
-    try {
-      await addDoc(collection(db, "cartitems"), {
-        image: product.thumbnail,
-        title: product.title,
-        price: product.price,
-        productId: Date.now(),
-        quantity: 1,
-        uid,
-      });
-      router.replace("/cart");
-    } catch (err) {
-      console.error("Error adding document: ", err);
-    }
+
+    await axios
+      .post("/api/addtocart", { product, uid })
+      .then(() => {
+        router.replace("/cart");
+        router.refresh();
+      })
+      .catch((err) => toast({ title: "Error", description: err.message }));
   };
 
   return (
