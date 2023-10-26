@@ -9,8 +9,7 @@ export default async function LocalCart() {
     redirect("/cart");
   }
   return (
-    <main>
-      <h1>Local Cart</h1>
+    <main className="mt-10 flex h-screen items-center justify-center">
       <CartList />
     </main>
   );
