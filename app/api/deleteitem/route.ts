@@ -2,7 +2,7 @@ import { db } from "@/firebase/config";
 import { deleteDoc, doc } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
   const { id }: { id: string } = await req.json();
   try {
     await deleteDoc(doc(db, "cartitems", id));
