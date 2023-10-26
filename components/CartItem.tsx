@@ -10,11 +10,11 @@ function CartItem({ item }: { item: ProductProps }) {
       <Image
         src={thumbnail}
         alt={title}
-        width={400}
-        height={400}
+        width={300}
+        height={300}
         objectFit="contain"
         objectPosition="center"
-        className="self-center"
+        className="mx-auto aspect-square w-[300px]"
       />
       <div className="mt-5 flex justify-around">
         <h3 className="font-bold">{title}</h3>

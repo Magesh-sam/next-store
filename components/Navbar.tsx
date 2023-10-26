@@ -26,8 +26,11 @@ function Navbar() {
         <UserButton />
         {/* <Sidebar /> */}
         <ThemeToggle />
-        <Link href='/cart' className={buttonVariants({ variant: "ghost" ,size:"icon"})}  >
-          <ShoppingBag/>
+        <Link
+          href="/cart"
+          className={buttonVariants({ variant: "ghost", size: "icon" })}
+        >
+          <ShoppingBag />
         </Link>
         {/* <ShoppingCart /> */}
       </span>
