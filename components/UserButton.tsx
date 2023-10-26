@@ -52,9 +52,11 @@ export default function UserButton() {
         <DropdownMenuItem onClick={() => router.replace("/cart")}>
           View Cart
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.replace("/wishlist")}>
-          View Wishlist
-        </DropdownMenuItem>
+        {user && (
+          <DropdownMenuItem onClick={() => router.replace("/wishlist")}>
+            View Wishlist
+          </DropdownMenuItem>
+        )}
         {user ? (
           <DropdownMenuItem onClick={() => router.replace("/api/auth/logout")}>
             Logout

@@ -2,7 +2,7 @@ import { db } from "@/firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   const { id }: { id: string } = await req.json();
   const wishlistRef = collection(db, "wishlist");
   const q = query(wishlistRef, where("uid", "==", id));
