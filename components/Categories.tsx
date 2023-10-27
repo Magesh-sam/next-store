@@ -8,7 +8,7 @@ function Categories() {
   const currentPath = usePathname();
 
   return (
-    <ul className=" xs:hidden mt-20 flex flex-col gap-3 pl-5 sm:hidden md:flex">
+    <ul className=" mt-20  hidden flex-col gap-3 pl-5 sm:hidden md:hidden lg:flex">
       {productCategories.map((category) => (
         <Link
           key={category.category}

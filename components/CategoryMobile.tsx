@@ -16,7 +16,7 @@ function CategoryMobile() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className=" mx-3 flex  items-center gap-3 self-end rounded-md border-2 border-primary p-2 md:hidden">
+      <DropdownMenuTrigger className=" mx-3 flex  items-center gap-3 self-end rounded-md border-2 border-primary p-2 lg:hidden">
         <span>Categories</span>
         <span>&#8964;</span>
       </DropdownMenuTrigger>
