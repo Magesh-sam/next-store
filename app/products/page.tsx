@@ -45,7 +45,7 @@ async function page() {
     .then((res) => res.data.products);
 
   return (
-    <main className=" flex gap-5 bg-background">
+    <main className=" flex gap-3 bg-background">
       <Categories />
       <ProductList products={products} />
     </main>
