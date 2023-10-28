@@ -7,7 +7,7 @@ import { useToast } from "./ui/use-toast";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { ToastAction } from "./ui/toast";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import { api } from "@/axios/config";
 
 function AddToWishlistButton({ product }: { product: ProductProps }) {
   const { toast } = useToast();
@@ -38,8 +38,8 @@ function AddToWishlistButton({ product }: { product: ProductProps }) {
       });
     }
 
-    await axios
-      .post("/api/addtowishlist", { product, uid })
+    await api
+      .post("/addtowishlist", { product, uid })
       .then(() => {
         toast({
           title: "Added to wishlist successfully",
