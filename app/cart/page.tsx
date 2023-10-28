@@ -1,7 +1,9 @@
+import { api } from "@/axios/config";
+
 import QuantityBtn from "@/components/QuantityBtn";
-import { db } from "@/firebase/config";
+
 import { getSession } from "@auth0/nextjs-auth0";
-import { collection, getDocs, query, where } from "firebase/firestore";
+
 import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -17,26 +19,17 @@ export default async function Cart() {
     redirect("/localcart");
   }
 
-  const cartitemsRef = collection(db, "cartitems");
-  const q = query(cartitemsRef, where("uid", "==", user?.email));
-  const querySnapshot = await getDocs(q);
+  const cartItems = await api
+    .post("/getcart", {
+      id: user?.email,
+    })
+    .then((response) => response.data.cartItems);
 
-  const data = querySnapshot.docs.map((doc) => doc.data());
-  const dataId = querySnapshot.docs.map((doc) => doc.id);
-  const cartItems = data.map((item, index) => {
-    return {
-      id: dataId[index],
-      image: item.image,
-      title: item.title,
-      price: item.price,
-      quantity: item.quantity,
-    };
-  });
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center">
       <h1>Cart</h1>
-
-      {cartItems.map((item) => (
+      {/* //Todo change any to proper types */}
+      {cartItems.map((item: any) => (
         <div key={item.id} className="flex">
           <Image src={item.image} alt={item.title} width={200} height={200} />
           <div className="flex flex-col">

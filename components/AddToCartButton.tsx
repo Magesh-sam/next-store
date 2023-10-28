@@ -8,7 +8,7 @@ import { AppDispatch } from "@/redux/store";
 import { addToCart } from "@/redux/Slices/cartSlice";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import { api } from "@/axios/config";
 function AddToCartButton({ item: product }: { item: ProductProps }) {
   const dispatch = useDispatch<AppDispatch>();
   const { user, isLoading } = useUser();
@@ -26,8 +26,8 @@ function AddToCartButton({ item: product }: { item: ProductProps }) {
     }
 
     const uid = user?.email;
-    await axios
-      .post("/api/addtocart", { product, uid })
+    await api
+      .post("/addtocart", { product, uid })
       .then(() => {
         router.replace("/cart");
         router.refresh();

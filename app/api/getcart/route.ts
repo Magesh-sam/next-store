@@ -4,21 +4,22 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const { id }: { id: string } = await req.json();
-  const cartItemsRef = collection(db, "cartitems");
-  const q = query(cartItemsRef, where("uid", "==", id));
-  const querySnapshot = await getDocs(q);
-  const data = querySnapshot.docs.map((doc) => doc.data());
-  const dataId = querySnapshot.docs.map((doc) => doc.id);
-  const cartItems = data.map((item, index) => {
-    return {
-      id: dataId[index],
-      image: item.image,
-      title: item.title,
-      price: item.price,
-      quantity: item.quantity,
-    };
-  });
   try {
+    const cartItemsRef = collection(db, "cartitems");
+    const q = query(cartItemsRef, where("uid", "==", id));
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => doc.data());
+    const dataId = querySnapshot.docs.map((doc) => doc.id);
+    const cartItems = data.map((item, index) => {
+      return {
+        id: dataId[index],
+        image: item.image,
+        title: item.title,
+        price: item.price,
+        quantity: item.quantity,
+      };
+    });
+
     return NextResponse.json({
       success: true,
       status: 200,
