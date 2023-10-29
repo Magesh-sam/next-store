@@ -10,6 +10,7 @@ export default async function LocalCart() {
   }
   return (
     <main className="mt-10 flex h-screen items-center justify-center">
+      <h1>Local cart</h1>
       <CartList />
     </main>
   );

@@ -21,7 +21,7 @@ function Sidebar() {
   };
 
   return (
-    <Sheet open={true} onOpenChange={() => dispatch(toggleCart())}>
+    <Sheet open={isCartOpen} onOpenChange={() => dispatch(toggleCart())}>
       <SheetTrigger>
         <ShoppingBag
           onClick={() => {

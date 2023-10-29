@@ -6,9 +6,9 @@ import { ProductProps } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/Slices/cartSlice";
-import axios from "axios";
 import { useToast } from "./ui/use-toast";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { api } from "@/axios/config";
 
 function SingleCartButton({ product }: { product: ProductProps }) {
   const dispatch = useDispatch();
@@ -28,8 +28,8 @@ function SingleCartButton({ product }: { product: ProductProps }) {
       router.refresh();
     }
 
-    await axios
-      .post("/api/addtocart", { product, uid })
+    await api
+      .post("/addtocart", { product, uid })
       .then(() => {
         router.replace("/cart");
         router.refresh();

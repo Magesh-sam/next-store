@@ -7,6 +7,7 @@ import { addDoc, collection } from "firebase/firestore";
 export async function POST(req: NextRequest) {
   const { product, uid }: { product: ProductProps; uid: string } =
     await req.json();
+  console.log("req received");
 
   try {
     await addDoc(collection(db, "cartitems"), {
