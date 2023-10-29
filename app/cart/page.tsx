@@ -1,5 +1,5 @@
 import { api } from "@/axios/config";
-import DeleteCartItem from "@/components/DeleteCartItem";
+import DeleteProduct from "@/components/DeleteProduct";
 
 import QuantityBtn from "@/components/QuantityBtn";
 
@@ -44,9 +44,9 @@ export default async function Cart() {
               <h3>{item.title}</h3>
               <p>${item.price}</p>
               <p>product id:{item.id}</p>
-              <div className="flex justify-between">
+              <div className="flex items-center justify-between ">
                 <QuantityBtn quantity={item.quantity} productId={item.id} />
-                <DeleteCartItem id={item.id} />
+                <DeleteProduct id={item.id} type="cartitems" />
               </div>
             </div>
           </div>

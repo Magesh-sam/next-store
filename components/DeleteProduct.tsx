@@ -1,31 +1,34 @@
+"use client";
+import { Trash2 } from "lucide-react";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "@/firebase/config";
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
+  AlertDialogTrigger,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { removeFromCart } from "@/redux/Slices/cartSlice";
-import { AppDispatch } from "@/redux/store";
-import { Trash2 } from "lucide-react";
-import { useDispatch } from "react-redux";
-import { buttonVariants } from "./ui/button";
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "./ui/alert-dialog";
+import { useRouter } from "next/navigation";
+function DeleteProduct({ id, type }: { id: string; type: string }) {
+  const router = useRouter();
 
-export function DeleteProduct({ id }: { id: number }) {
-  const dispatch = useDispatch<AppDispatch>();
+  const handleDelete = async () => {
+    try {
+      await deleteDoc(doc(db, type, id));
+      router.refresh();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger
-        className={
-          buttonVariants({ variant: "ghost" }) +
-          " hover:cursor-pointer hover:bg-red-600 hover:text-secondary"
-        }
-      >
+      <AlertDialogTrigger className=" rounded-lg bg-red-600 p-2 hover:bg-red-700">
         <Trash2 />
       </AlertDialogTrigger>
       <AlertDialogContent>
@@ -37,11 +40,11 @@ export function DeleteProduct({ id }: { id: number }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => dispatch(removeFromCart(id))}>
-            Remove
-          </AlertDialogAction>
+          <AlertDialogAction onClick={handleDelete}>Remove</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
 }
+
+export default DeleteProduct;

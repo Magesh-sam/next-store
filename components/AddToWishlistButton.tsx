@@ -45,8 +45,6 @@ function AddToWishlistButton({ product }: { product: ProductProps }) {
           title: "Added to wishlist successfully",
           description: `Product: ${product.title}`,
         });
-        router.replace("/wishlist");
-        router.refresh();
       })
       .catch((err) =>
         toast({
