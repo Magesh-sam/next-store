@@ -1,4 +1,5 @@
 import { api } from "@/axios/config";
+import DeleteCartItem from "@/components/DeleteCartItem";
 
 import QuantityBtn from "@/components/QuantityBtn";
 
@@ -29,17 +30,28 @@ export default async function Cart() {
     <main className="flex h-screen w-screen flex-col items-center justify-center">
       <h1>Cart</h1>
       {/* //Todo change any to proper types */}
-      {cartItems.map((item: any) => (
-        <div key={item.id} className="flex">
-          <Image src={item.image} alt={item.title} width={200} height={200} />
-          <div className="flex flex-col">
-            <h3>{item.title}</h3>
-            <p>${item.price}</p>
-            <p>product id:{item.id}</p>
-            <QuantityBtn quantity={item.quantity} productId={item.id} />
+      <div className="flex flex-col gap-y-5">
+        {cartItems.map((item: any) => (
+          <div key={item.id} className="flex">
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={200}
+              height={200}
+              className="w-200 aspect-square"
+            />
+            <div className="flex flex-col justify-between p-3 ">
+              <h3>{item.title}</h3>
+              <p>${item.price}</p>
+              <p>product id:{item.id}</p>
+              <div className="flex justify-between">
+                <QuantityBtn quantity={item.quantity} productId={item.id} />
+                <DeleteCartItem id={item.id} />
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </main>
   );
 }
