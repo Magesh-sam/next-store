@@ -14,9 +14,9 @@ async function Navbar() {
     .post("/getcart", {
       id,
     })
-    .then((response) => response.data.cartItems);
+    .then((response) => response.data.cartItems).catch(err => console.log(err))
 
-  const cartCount = cartItems?.length;
+  const cartCount = cartItems.length;
   return (
     <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-8 shadow-lg dark:bg-black">
       <span className="flex items-center gap-10">

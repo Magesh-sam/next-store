@@ -1,4 +1,3 @@
-import React from "react";
 
 function CartCount({ count }: { count: number }) {
   return (

@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { ProductProps } from "@/types/types";
