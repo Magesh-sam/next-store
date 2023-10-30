@@ -3,7 +3,6 @@ import { getSession } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import { api } from "@/axios/config";
 import Image from "next/image";
-import { WishlistItemProps } from "@/types/types";
 
 export default async function Wishlist() {
   const session = await getSession();
@@ -33,7 +32,8 @@ export default async function Wishlist() {
     return (
       <main className="flex h-screen w-screen flex-col items-center justify-center">
         <h1 className="text-5xl">Wishlist</h1>
-        {wishlist.map((item: WishlistItemProps & { id: string }) => (
+        {/* //Todo change any to proper types */}
+        {wishlist.map((item: any) => (
           <div key={item.id} className="   w-[400px] gap-3  p-3">
             <Image
               src={item.image}

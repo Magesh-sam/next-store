@@ -9,18 +9,3 @@ export type ProductProps = {
   category: string;
   quantity: number;
 };
-
-export type CartItemProps = {
-  uid: string;
-  title: string;
-  price: number;
-  quantity: number;
-  image: string;
-};
-
-export type WishlistItemProps = {
-  uid: string;
-  title: string;
-  price: number;
-  image: string;
-};

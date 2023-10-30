@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
+import Sidebar from "./Sidebar";
 import { Button, buttonVariants } from "./ui/button";
+import ShoppingCart from "./ShoppingCart";
 import UserButton from "./UserButton";
 import { ShoppingBag } from "lucide-react";
+<<<<<<< HEAD
 import { getSession } from "@auth0/nextjs-auth0";
 import { api } from "@/axios/config";
 import CartCount from "./CartCount";
@@ -17,8 +20,11 @@ async function Navbar() {
     .then((response) => response.data.cartItems).catch(err => console.log(err))
 
   const cartCount = cartItems.length;
+=======
+function Navbar() {
+>>>>>>> parent of ea81695 (fix: types for cart/wishlist, cart total button)
   return (
-    <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-8 shadow-lg dark:bg-black">
+    <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-3 shadow-lg dark:bg-black">
       <span className="flex items-center gap-10">
         <Link href="/" className="text-2xl font-bold">
           Next-Store🛍️
@@ -33,17 +39,18 @@ async function Navbar() {
           </Link>
         </Button>
       </span>
-      <span className="flex gap-3 ">
+      <span className="flex  gap-3">
         <UserButton />
         {/* <Sidebar /> */}
         <ThemeToggle />
         <Link
           href="/cart"
-          className={
-            buttonVariants({ variant: "ghost", size: "icon" }) + "relative"
-          }
+          className={buttonVariants({ variant: "ghost", size: "icon" })}
         >
+<<<<<<< HEAD
           {cartCount && cartCount > 0 && <CartCount count={cartCount} />}
+=======
+>>>>>>> parent of ea81695 (fix: types for cart/wishlist, cart total button)
           <ShoppingBag />
         </Link>
         {/* <ShoppingCart /> */}
