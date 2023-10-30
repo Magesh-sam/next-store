@@ -16,7 +16,7 @@ async function Navbar() {
     })
     .then((response) => response.data.cartItems);
 
-  const cartCount = cartItems.length;
+  const cartCount = cartItems?.length;
   return (
     <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-8 shadow-lg dark:bg-black">
       <span className="flex items-center gap-10">
@@ -43,7 +43,7 @@ async function Navbar() {
             buttonVariants({ variant: "ghost", size: "icon" }) + "relative"
           }
         >
-          {cartCount > 0 && <CartCount count={cartCount} />}
+          {cartCount && cartCount > 0 && <CartCount count={cartCount} />}
           <ShoppingBag />
         </Link>
         {/* <ShoppingCart /> */}
