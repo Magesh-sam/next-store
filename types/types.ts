@@ -7,5 +7,4 @@ export type ProductProps = {
   rating: number;
   brand: string;
   category: string;
-  quantity: number;
 };
