@@ -2,6 +2,7 @@ import { api } from "@/axios/config";
 import DeleteProduct from "@/components/DeleteProduct";
 
 import QuantityBtn from "@/components/QuantityBtn";
+import { CartItemProps } from "@/types/types";
 
 import { getSession } from "@auth0/nextjs-auth0";
 
@@ -29,9 +30,8 @@ export default async function Cart() {
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center">
       <h1>Cart</h1>
-      {/* //Todo change any to proper types */}
       <div className="flex flex-col gap-y-5">
-        {cartItems.map((item: any) => (
+        {cartItems.map((item: CartItemProps & { id: string }) => (
           <div key={item.id} className="flex">
             <Image
               src={item.image}

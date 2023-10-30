@@ -16,7 +16,8 @@ function Sidebar() {
 
   const handlePaymentCheckout = async () => {
     setLoading(true);
-    await handleCheckout(cart);
+  // FIXME for all checkout
+    // await handleCheckout(cart);
     setLoading(false);
   };
 
