@@ -1,9 +1,9 @@
 "use client";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import CartItem from "./CartItem";
+import CartItem from "./LocalCartItem";
 
-function CartList() {
+function LocalCartList() {
   const cart = useSelector((state: RootState) => state.cart.cart);
 
   return (
@@ -17,4 +17,4 @@ function CartList() {
   );
 }
 
-export default CartList;
+export default LocalCartList;

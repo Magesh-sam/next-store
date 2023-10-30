@@ -2,7 +2,7 @@
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "./ui/button";
-import CartList from "./CartList";
+import CartList from "./LocalCartList";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/redux/store";
 import { toggleCart } from "@/redux/Slices/cartSlice";
