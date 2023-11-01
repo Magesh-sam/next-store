@@ -20,7 +20,11 @@ function AddToCartButton({ item: product }: { item: ProductProps }) {
   const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!user) {
-      dispatch(addToCart(product));
+      const productToDispatch = {
+        ...product,
+        quantity: 1,
+      };
+      dispatch(addToCart(productToDispatch));
       router.replace("/localcart");
       router.refresh();
     }

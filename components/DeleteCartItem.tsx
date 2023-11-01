@@ -1,7 +1,5 @@
 "use client";
 import { Trash2 } from "lucide-react";
-import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "@/firebase/config";
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -13,13 +11,22 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "./ui/alert-dialog";
+import { api } from "@/axios/config";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 function DeleteCartItem({ id }: { id: string }) {
+  const { toast } = useToast();
+
+  const router = useRouter();
   const handleDelete = async () => {
     try {
-      const data = await deleteDoc(doc(db, "cartitems", id));
-      console.log(data);
+      await api.post("/deleteitem", { id });
+      router.refresh();
     } catch (err) {
-      console.log(err);
+      toast({
+        title: "Error",
+        description: JSON.stringify(err),
+      });
     }
   };
 

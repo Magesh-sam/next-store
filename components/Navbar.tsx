@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
-import Sidebar from "./Sidebar";
 import { Button, buttonVariants } from "./ui/button";
-import ShoppingCart from "./ShoppingCart";
 import UserButton from "./UserButton";
 import { ShoppingBag } from "lucide-react";
 function Navbar() {

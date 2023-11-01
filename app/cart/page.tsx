@@ -43,7 +43,6 @@ export default async function Cart() {
             <div className="flex flex-col justify-between p-3 ">
               <h3>{item.title}</h3>
               <p>${item.price}</p>
-              <p>product id:{item.id}</p>
               <div className="flex justify-between">
                 <QuantityBtn quantity={item.quantity} productId={item.id} />
                 <DeleteCartItem id={item.id} />

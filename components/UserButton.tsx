@@ -13,16 +13,12 @@ import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import Link from "next/link";
 import { User } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { toggleCart } from "@/redux/Slices/cartSlice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
 
 export default function UserButton() {
   const { user, isLoading } = useUser();
 
   const router = useRouter();
 
-  const dispatch = useDispatch<AppDispatch>();
   if (isLoading) return <> </>;
 
   return (

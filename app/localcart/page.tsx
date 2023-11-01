@@ -1,4 +1,4 @@
-import CartList from "@/components/CartList";
+import LocalCartList from "@/components/LocalCartList";
 import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
 
@@ -10,7 +10,7 @@ export default async function LocalCart() {
   }
   return (
     <main className="mt-10 flex h-screen items-center justify-center">
-      <CartList />
+      <LocalCartList />
     </main>
   );
 }
