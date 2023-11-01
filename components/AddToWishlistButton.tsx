@@ -36,6 +36,7 @@ function AddToWishlistButton({ product }: { product: ProductProps }) {
           </ToastAction>
         ),
       });
+      return;
     }
 
     await api
