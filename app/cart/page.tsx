@@ -30,7 +30,6 @@ export default async function Cart() {
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center">
       <h1>Cart</h1>
-      {/* //Todo change any to proper types */}
       <div className="flex flex-col gap-y-5">
         {cartItems.map((item: CartItemProps) => (
           <div key={item.docId} className="flex">

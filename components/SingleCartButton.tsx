@@ -1,7 +1,7 @@
 "use client";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "./ui/button";
-import { ProductProps } from "@/types/types";
+import { CartItemAPIProps, ProductProps } from "@/types/types";
 
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ import { useToast } from "./ui/use-toast";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { api } from "@/axios/config";
 
-function SingleCartButton({ product }: { product: ProductProps }) {
+function SingleCartButton({ product }: { product: CartItemAPIProps }) {
   const dispatch = useDispatch();
   const { toast } = useToast();
   const { user, isLoading } = useUser();

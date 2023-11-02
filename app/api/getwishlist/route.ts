@@ -6,18 +6,20 @@ export async function POST(req: NextRequest) {
   const { id }: { id: string } = await req.json();
   const wishlistRef = collection(db, "wishlist");
   const q = query(wishlistRef, where("uid", "==", id));
-  const querySnapshot = await getDocs(q);
-  const data = querySnapshot.docs.map((doc) => doc.data());
-  const dataId = querySnapshot.docs.map((doc) => doc.id);
-  const wishlist = data.map((item, index) => {
-    return {
-      id: dataId[index],
-      image: item.image,
-      title: item.title,
-      price: item.price,
-    };
-  });
   try {
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => doc.data());
+    const dataId = querySnapshot.docs.map((doc) => doc.id);
+    const wishlist = data.map((item, index) => {
+      return {
+        id: item.id,
+        docId: dataId[index],
+        image: item.image,
+        title: item.title,
+        price: item.price,
+      };
+    });
+
     return NextResponse.json({
       success: true,
       status: 200,

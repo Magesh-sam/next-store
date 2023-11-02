@@ -96,7 +96,19 @@ export default async function SingleProduct({
   const { data }: { data: ProductProps } = await axios.get(
     `https://dummyjson.com/products/${productId}`,
   );
-
+  const cartItem = {
+    id: data.id,
+    title: data.title,
+    image: data.thumbnail,
+    price: data.price,
+    quantity: 1,
+  };
+  const wishlistItem = {
+    id: data.id,
+    title: data.title,
+    image: data.thumbnail,
+    price: data.price,
+  };
   return (
     <main className=" flex h-screen w-screen  items-center justify-center  ">
       <div className="max-w-600[px] space-y-5 rounded-lg px-4 py-8 shadow-lg dark:border dark:border-primary">
@@ -115,8 +127,8 @@ export default async function SingleProduct({
             <Rating value={data.rating} readOnly />
           </div>
           <span className="flex justify-between">
-            <SingleWishlistButton product={data} />
-            <SingleCartButton product={data} />
+            <SingleWishlistButton product={wishlistItem} />
+            <SingleCartButton product={cartItem} />
           </span>
         </section>
       </div>

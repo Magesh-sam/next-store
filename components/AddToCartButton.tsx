@@ -3,13 +3,18 @@ import { ShoppingBag } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
 import { useDispatch } from "react-redux";
-import { ProductProps } from "@/types/types";
+import {
+  CartItemAPIProps,
+  ProductProps,
+  WishListItemAPIProps,
+  WishListItemProps,
+} from "@/types/types";
 import { AppDispatch } from "@/redux/store";
 import { addToCart } from "@/redux/Slices/cartSlice";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/navigation";
 import { api } from "@/axios/config";
-function AddToCartButton({ item: product }: { item: ProductProps }) {
+function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
   const dispatch = useDispatch<AppDispatch>();
   const { user, isLoading } = useUser();
   const router = useRouter();

@@ -6,6 +6,19 @@ import AddToCartButton from "./AddToCartButton";
 import { ProductProps } from "@/types/types";
 import AddToWishlistButton from "./AddToWishlistButton";
 function Product({ item }: { item: ProductProps }) {
+  const cartItem = {
+    id: item.id,
+    title: item.title,
+    image: item.thumbnail,
+    price: item.price,
+    quantity: 1,
+  };
+  const wishlistItem = {
+    id: item.id,
+    title: item.title,
+    image: item.thumbnail,
+    price: item.price,
+  };
   const { title, thumbnail, price, id } = item;
   const path = "/products/" + id;
   return (
@@ -26,9 +39,9 @@ function Product({ item }: { item: ProductProps }) {
           {title}
         </CardTitle>
         <CardFooter className="mt-2 flex items-center justify-between">
-          <AddToWishlistButton product={item} />
+          <AddToWishlistButton product={wishlistItem} />
           <p className="font-bold">${price}</p>
-          <AddToCartButton item={item} />
+          <AddToCartButton item={cartItem} />
         </CardFooter>
       </Card>
     </Link>

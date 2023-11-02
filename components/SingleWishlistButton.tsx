@@ -5,12 +5,12 @@ import { Button } from "./ui/button";
 import axios from "axios";
 import { ToastAction } from "./ui/toast";
 import { useToast } from "./ui/use-toast";
-import { ProductProps } from "@/types/types";
+import { WishListItemAPIProps } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { api } from "@/axios/config";
 
-function SingleWishlistButton({ product }: { product: ProductProps }) {
+function SingleWishlistButton({ product }: { product: WishListItemAPIProps }) {
   const { toast } = useToast();
   const { user, isLoading } = useUser();
   const router = useRouter();

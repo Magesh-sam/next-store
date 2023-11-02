@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductProps } from "@/types/types";
+import { CartItemAPIProps, CartItemProps, ProductProps } from "@/types/types";
 const initialState = {
-  cart: [] as ProductProps[],
+  cart: [] as CartItemAPIProps[],
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<ProductProps>) => {
+    addToCart: (state, action: PayloadAction<CartItemAPIProps>) => {
       state.cart.push(action.payload);
     },
     removeFromCart: (state, action: PayloadAction<number>) => {

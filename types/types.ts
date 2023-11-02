@@ -19,3 +19,27 @@ export type CartItemProps = {
   title: string;
   uid: string;
 };
+
+export type CartItemAPIProps = {
+  id: number;
+  image: string;
+  price: number;
+  quantity: number;
+  title: string;
+};
+
+export type WishListItemProps = {
+  docId: string;
+  id: number;
+  image: string;
+  price: number;
+  title: string;
+  uid: string;
+};
+
+export type WishListItemAPIProps = {
+  id: number;
+  image: string;
+  price: number;
+  title: string;
+};

@@ -2,20 +2,20 @@ import React from "react";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
-import { ProductProps } from "@/types/types";
+import { CartItemAPIProps, CartItemProps, ProductProps } from "@/types/types";
 import { DeleteProduct } from "./DeleteProduct";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { decrementQuantity, incrementQuantity } from "@/redux/Slices/cartSlice";
-function LocalCartItem({ item }: { item: ProductProps }) {
-  const { title, thumbnail, price, id, quantity } = item;
+function LocalCartItem({ item }: { item: CartItemAPIProps }) {
+  const { title, image, price, id, quantity } = item;
   const dispatch = useDispatch<AppDispatch>();
 
   return (
     <Card className="  group  relative w-[280px]   max-w-[280px] overflow-hidden bg-background shadow-md hover:border-primary dark:bg-[#383838] ">
       <CardHeader className=" items-center rounded-t-md bg-white ">
         <Image
-          src={thumbnail}
+          src={image}
           width={250}
           height={250}
           alt={title}

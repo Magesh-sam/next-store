@@ -5,6 +5,7 @@ import { api } from "@/axios/config";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
 import DeleteItem from "@/components/DeleteItem";
+import { WishListItemProps } from "@/types/types";
 
 export default async function Wishlist() {
   const session = await getSession();
@@ -30,13 +31,12 @@ export default async function Wishlist() {
 
   if (data.wishlist) {
     const wishlist = data.wishlist;
-    console;
+
     return (
       <main className="flex h-screen w-screen flex-col items-center justify-center">
         <h1 className="text-5xl">Wishlist</h1>
-        {/* //Todo change any to proper types */}
-        {wishlist.map((item: any) => (
-          <div key={item.id} className="   w-[300px] gap-3  p-3">
+        {wishlist.map((item: WishListItemProps) => (
+          <div key={item.docId} className="   w-[300px] gap-3  p-3">
             <Image
               src={item.image}
               alt={item.title}
@@ -51,8 +51,16 @@ export default async function Wishlist() {
               <p className="font-bold">${item.price}</p>
             </div>
             <div className="flex w-[300px] items-center justify-between">
-              <AddToCartButton item={item} />
-              <DeleteItem id={item.id} type="wishlist" />
+              <AddToCartButton
+                item={{
+                  id: item.id,
+                  title: item.title,
+                  image: item.image,
+                  price: item.price,
+                  quantity: 1,
+                }}
+              />
+              <DeleteItem id={item.docId} type="wishlist" />
             </div>
           </div>
         ))}

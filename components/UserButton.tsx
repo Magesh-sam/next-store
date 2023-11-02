@@ -45,11 +45,11 @@ export default function UserButton() {
           </DropdownMenuLabel>
         )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.replace("/cart")}>
+        <DropdownMenuItem onClick={() => router.push("/cart")}>
           View Cart
         </DropdownMenuItem>
         {user && (
-          <DropdownMenuItem onClick={() => router.replace("/wishlist")}>
+          <DropdownMenuItem onClick={() => router.push("/wishlist")}>
             View Wishlist
           </DropdownMenuItem>
         )}

@@ -1,24 +1,24 @@
-import { ProductProps } from "@/types/types";
+import { CartItemProps } from "@/types/types";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export async function POST(req: NextRequest) {
-  const { products }: { products: ProductProps[] } = await req.json();
+  const { products }: { products: CartItemProps[] } = await req.json();
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2023-08-16",
   });
-  const checkoutItems = products.map((product: ProductProps) => ({
+  const checkoutItems = products.map((product: CartItemProps) => ({
     price_data: {
       currency: "usd",
       unit_amount: product.price * 100,
       product_data: {
         name: product.title,
-        images: [product.thumbnail],
+        images: [product.image],
         metadata: {
           id: product.id,
           title: product.title,
           price: product.price,
-          thumbnail: product.thumbnail,
+          thumbnail: product.image,
         },
       },
     },

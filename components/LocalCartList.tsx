@@ -1,7 +1,7 @@
 "use client";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { ProductProps } from "@/types/types";
+import { CartItemAPIProps, CartItemProps, ProductProps } from "@/types/types";
 import LocalCartItem from "./LocalCartItem";
 
 function CartList() {
@@ -9,7 +9,7 @@ function CartList() {
 
   return (
     <section className=" grid grid-cols-1 gap-3   sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {cart.map((item: ProductProps) => (
+      {cart.map((item: CartItemAPIProps) => (
         <LocalCartItem key={item.id} item={item} />
       ))}
 

@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "./ui/button";
 import { db } from "@/firebase/config";
-import { doc, updateDoc, query, where } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 
 function QuantityBtn({
@@ -11,40 +11,44 @@ function QuantityBtn({
   quantity: number;
   productId: string;
 }) {
-  const [itemQuantity, setItemQuantity] = useState(quantity);
+  // TODO - quantity is not updating on client side, cached data is showing | next js issue
+  const [quantityState, setQuantityState] = useState(quantity);
+
   const [isIncrementUpdating, setIsIncrementUpdating] = useState(false);
   const [isDecrementUpdating, setIsDecrementUpdating] = useState(false);
   const itemRef = doc(db, "cartitems", productId);
 
   const incrementQty = async () => {
     setIsIncrementUpdating(true);
-    setItemQuantity((prev) => prev + 1);
+    const newQuantity = quantityState + 1;
+    setQuantityState(newQuantity);
     await updateDoc(itemRef, {
-      quantity: itemQuantity + 1,
+      quantity: newQuantity,
     });
     setIsIncrementUpdating(false);
   };
 
   const decrementQty = async () => {
-    if (itemQuantity === 1) {
+    if (quantityState === 1) {
       return;
     }
     setIsDecrementUpdating(true);
-    setItemQuantity((prev) => prev - 1);
+    const newQuantity = quantityState - 1;
+    setQuantityState(newQuantity);
     await updateDoc(itemRef, {
-      quantity: itemQuantity - 1,
+      quantity: newQuantity,
     });
     setIsDecrementUpdating(false);
   };
-
+  
   return (
     <div className="flex items-center gap-x-3">
       <Button disabled={isIncrementUpdating} onClick={incrementQty}>
         +
       </Button>
-      <p>{itemQuantity}</p>
+      <p>{quantityState}</p>
       <Button
-        disabled={isDecrementUpdating || itemQuantity === 1}
+        disabled={isDecrementUpdating || quantityState === 1}
         onClick={decrementQty}
       >
         -
