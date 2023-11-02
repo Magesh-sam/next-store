@@ -3,9 +3,10 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { id }: { id: string } = await req.json();
+  const { id, type }: { id: string; type: "wishlist" | "cartitems" } =
+    await req.json();
   try {
-    await deleteDoc(doc(db, "cartitems", id));
+    await deleteDoc(doc(db, type, id));
     return NextResponse.json({
       success: true,
       status: 200,

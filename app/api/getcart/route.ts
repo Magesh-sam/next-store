@@ -12,11 +12,12 @@ export async function POST(req: NextRequest) {
     const dataId = querySnapshot.docs.map((doc) => doc.id);
     const cartItems = data.map((item, index) => {
       return {
-        id: dataId[index],
+        docId: dataId[index],
         image: item.image,
         title: item.title,
         price: item.price,
         quantity: item.quantity,
+        id: item.id,
       };
     });
 

@@ -14,13 +14,19 @@ import {
 import { api } from "@/axios/config";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
-function DeleteCartItem({ id }: { id: string }) {
+function DeleteItem({
+  id,
+  type,
+}: {
+  id: string;
+  type: "wishlist" | "cartitems";
+}) {
   const { toast } = useToast();
 
   const router = useRouter();
   const handleDelete = async () => {
     try {
-      await api.post("/deleteitem", { id });
+      await api.post("/deleteitem", { id, type });
       router.refresh();
     } catch (err) {
       toast({
@@ -32,7 +38,7 @@ function DeleteCartItem({ id }: { id: string }) {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="mx-auto  mt-3 flex items-center justify-between rounded-lg bg-red-600 p-2 hover:bg-red-700">
+      <AlertDialogTrigger className="mx-auto   flex items-center justify-between rounded-lg bg-red-600 p-2 hover:bg-red-700">
         <Trash2 />
       </AlertDialogTrigger>
       <AlertDialogContent>
@@ -51,4 +57,4 @@ function DeleteCartItem({ id }: { id: string }) {
   );
 }
 
-export default DeleteCartItem;
+export default DeleteItem;

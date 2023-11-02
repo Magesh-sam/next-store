@@ -12,37 +12,41 @@ function QuantityBtn({
   productId: string;
 }) {
   const [itemQuantity, setItemQuantity] = useState(quantity);
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isIncrementUpdating, setIsIncrementUpdating] = useState(false);
+  const [isDecrementUpdating, setIsDecrementUpdating] = useState(false);
   const itemRef = doc(db, "cartitems", productId);
 
   const incrementQty = async () => {
-    setIsUpdating(true);
+    setIsIncrementUpdating(true);
     setItemQuantity((prev) => prev + 1);
     await updateDoc(itemRef, {
       quantity: itemQuantity + 1,
     });
-    setIsUpdating(false);
+    setIsIncrementUpdating(false);
   };
 
   const decrementQty = async () => {
     if (itemQuantity === 1) {
       return;
     }
-    setIsUpdating(true);
+    setIsDecrementUpdating(true);
     setItemQuantity((prev) => prev - 1);
     await updateDoc(itemRef, {
       quantity: itemQuantity - 1,
     });
-    setIsUpdating(false);
+    setIsDecrementUpdating(false);
   };
 
   return (
     <div className="flex items-center gap-x-3">
-      <Button disabled={isUpdating} onClick={incrementQty}>
+      <Button disabled={isIncrementUpdating} onClick={incrementQty}>
         +
       </Button>
       <p>{itemQuantity}</p>
-      <Button disabled={isUpdating} onClick={decrementQty}>
+      <Button
+        disabled={isDecrementUpdating || itemQuantity === 1}
+        onClick={decrementQty}
+      >
         -
       </Button>
     </div>

@@ -1,7 +1,8 @@
 import { api } from "@/axios/config";
-import DeleteCartItem from "@/components/DeleteCartItem";
+import DeleteItem from "@/components/DeleteItem";
 
 import QuantityBtn from "@/components/QuantityBtn";
+import { CartItemProps } from "@/types/types";
 
 import { getSession } from "@auth0/nextjs-auth0";
 
@@ -31,8 +32,8 @@ export default async function Cart() {
       <h1>Cart</h1>
       {/* //Todo change any to proper types */}
       <div className="flex flex-col gap-y-5">
-        {cartItems.map((item: any) => (
-          <div key={item.id} className="flex">
+        {cartItems.map((item: CartItemProps) => (
+          <div key={item.docId} className="flex">
             <Image
               src={item.image}
               alt={item.title}
@@ -43,9 +44,9 @@ export default async function Cart() {
             <div className="flex flex-col justify-between p-3 ">
               <h3>{item.title}</h3>
               <p>${item.price}</p>
-              <div className="flex justify-between">
-                <QuantityBtn quantity={item.quantity} productId={item.id} />
-                <DeleteCartItem id={item.id} />
+              <div className="flex items-center justify-between gap-3">
+                <QuantityBtn quantity={item.quantity} productId={item.docId} />
+                <DeleteItem id={item.docId} type="cartitems" />
               </div>
             </div>
           </div>
