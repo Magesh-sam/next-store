@@ -38,7 +38,6 @@ function AddToWishlistButton({ product }: { product: WishListItemAPIProps }) {
       });
       return;
     }
-    console.log("req not started");
     await api
       .post("/addtowishlist", { product, uid })
       .then((data) => {
@@ -47,6 +46,7 @@ function AddToWishlistButton({ product }: { product: WishListItemAPIProps }) {
             title: "Added to wishlist successfully",
             description: `Product: ${product.title}`,
           });
+
           router.replace("/wishlist");
           router.refresh();
         } else {

@@ -6,6 +6,7 @@ import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
 import DeleteItem from "@/components/DeleteItem";
 import { WishListItemProps } from "@/types/types";
+import WishlistToCartBtn from "@/components/WishlistToCartBtn";
 
 export default async function Wishlist() {
   const session = await getSession();
@@ -36,7 +37,10 @@ export default async function Wishlist() {
       <main className="flex h-screen w-screen flex-col items-center justify-center">
         <h1 className="text-5xl">Wishlist</h1>
         {wishlist.map((item: WishListItemProps) => (
-          <div key={item.docId} className="   w-[300px] gap-3  p-3">
+          <div
+            key={item.docId}
+            className="   w-[300px] gap-3  border-2 border-primary p-3"
+          >
             <Image
               src={item.image}
               alt={item.title}
@@ -46,12 +50,12 @@ export default async function Wishlist() {
               objectPosition="center"
               className="mx-auto aspect-square w-[200px]"
             />
-            <div className="mt-5 flex justify-between">
-              <h3 className="font-bold">{item.title}</h3>
-              <p className="font-bold">${item.price}</p>
-            </div>
-            <div className="flex w-[300px] items-center justify-between">
-              <AddToCartButton
+
+            <h3 className="space-y-3 pl-3 pt-3">{item.title}</h3>
+            <p className="space-y-3 px-3   py-3 font-bold">${item.price}</p>
+
+            <div className="flex  items-center justify-between pb-3">
+              {/* <AddToCartButton
                 item={{
                   id: item.id,
                   title: item.title,
@@ -59,6 +63,10 @@ export default async function Wishlist() {
                   price: item.price,
                   quantity: 1,
                 }}
+              /> */}
+              <WishlistToCartBtn
+                item={{ ...item, quantity: 1 }}
+                userId={user?.email}
               />
               <DeleteItem id={item.docId} type="wishlist" />
             </div>
