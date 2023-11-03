@@ -30,7 +30,7 @@ function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
         quantity: 1,
       };
       dispatch(addToCart(productToDispatch));
-      router.replace("/localcart");
+      router.push("/localcart");
       router.refresh();
     }
 
@@ -38,7 +38,7 @@ function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
     await api
       .post("/addtocart", { product, uid })
       .then(() => {
-        router.replace("/cart");
+        router.push("/cart");
         router.refresh();
       })
       .catch((err) => console.log(err));

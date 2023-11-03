@@ -28,6 +28,7 @@ function Navbar() {
           href="/cart"
           className={buttonVariants({ variant: "ghost", size: "icon" })}
           replace
+          prefetch={false}
         >
           <ShoppingBag />
         </Link>

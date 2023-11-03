@@ -3,6 +3,7 @@ import "@smastrom/react-rating/style.css";
 
 import { Analytics } from "@vercel/analytics/react";
 
+
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 import { ThemeProvider } from "@/components/ThemeProvider";

@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "./ui/button";
 import { db } from "@/firebase/config";
-import { doc, updateDoc } from "firebase/firestore";
-import { useState } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 function QuantityBtn({
   quantity,
@@ -11,8 +11,17 @@ function QuantityBtn({
   quantity: number;
   productId: string;
 }) {
-  // TODO - quantity is not updating on client side, cached data is showing | next js issue
   const [quantityState, setQuantityState] = useState(quantity);
+  useEffect(() => {
+    const fetchQuantity = async () => {
+      const itemRef = doc(db, "cartitems", productId);
+      const docSnap = await getDoc(itemRef);
+      if (docSnap.exists()) {
+        setQuantityState(docSnap.data().quantity);
+      }
+    };
+    fetchQuantity();
+  }, [productId, quantityState]);
 
   const [isIncrementUpdating, setIsIncrementUpdating] = useState(false);
   const [isDecrementUpdating, setIsDecrementUpdating] = useState(false);
@@ -40,7 +49,7 @@ function QuantityBtn({
     });
     setIsDecrementUpdating(false);
   };
-  
+  console.log(quantityState);
   return (
     <div className="flex items-center gap-x-3">
       <Button disabled={isIncrementUpdating} onClick={incrementQty}>

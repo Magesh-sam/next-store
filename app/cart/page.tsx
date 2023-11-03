@@ -6,7 +6,6 @@ import { CartItemProps } from "@/types/types";
 
 import { getSession } from "@auth0/nextjs-auth0";
 
-import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
@@ -14,7 +13,6 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Cart() {
-  revalidatePath("/cart");
   const session = await getSession();
   const user = session?.user;
   if (!user) {
