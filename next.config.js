@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "i.dummyjson.com",
         pathname: "/*/**",
       },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+        pathname: "/*",
+      },
     ],
   },
   experimental: {

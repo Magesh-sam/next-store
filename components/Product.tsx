@@ -30,9 +30,8 @@ function Product({ item }: { item: ProductProps }) {
             width={250}
             height={250}
             alt={title}
-            objectFit="contain"
-            objectPosition="center"
-            className="h-[250px] w-[250px] transition-all duration-200 ease-in-out "
+            priority={id < 10}
+            className=" aspect-square w-[250px] transition-all duration-200 ease-in-out "
           />
         </CardHeader>
         <CardTitle className=" mt-2 truncate  px-3 text-center text-xl ">

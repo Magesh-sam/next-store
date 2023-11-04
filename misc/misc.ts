@@ -84,3 +84,107 @@ export const productCategories = [
     path: "/products/categories/lighting",
   },
 ];
+
+export const imageSlider = [
+  {
+    src: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    path: "/products/1",
+
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+    path: "/products/2",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+    path: "/products/3",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+    path: "/products/4",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+    path: "/products/5",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/6/thumbnail.png",
+    path: "/products/6",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+    path: "/products/7",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+    path: "/products/8",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
+    path: "/products/9",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
+    path: "/products/10",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    path: "/products/1",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+    path: "/products/2",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+    path: "/products/3",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+    path: "/products/4",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+    path: "/products/5",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/6/thumbnail.png",
+    path: "/products/6",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+    path: "/products/7",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+    path: "/products/8",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
+    path: "/products/9",
+    alt: "slider image",
+  },
+  {
+    src: "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
+    path: "/products/10",
+    alt: "slider image",
+  },
+];
