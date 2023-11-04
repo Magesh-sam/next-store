@@ -1,3 +1,4 @@
+import FeaturedProducts from "@/components/FeaturedProducts";
 import ImageSlider from "@/components/ImageSlider";
 import { Metadata } from "next";
 
@@ -51,11 +52,15 @@ export const metadata: Metadata = {
   colorScheme: "dark",
 };
 
+// TODO: make it responsive and fix the overflow
+
 export default function Home() {
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
-      <h1>Welcome to next store built with next js</h1>
-      <p>yet to develop home page</p>
+    <main className="mt-20 flex h-screen w-screen flex-col items-center justify-center overflow-x-hidden">
+      <h1 className="text-3xl font-semibold">
+        Welcome to next store built with next js
+      </h1>
+      <FeaturedProducts />
       <ImageSlider />
     </main>
   );

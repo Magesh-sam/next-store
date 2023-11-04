@@ -5,7 +5,7 @@ import { imageSlider } from "@/misc/misc";
 
 function ImageSlider() {
   return (
-    <div className="slider">
+    <div className="slider  ">
       <div className="slider-track">
         {imageSlider.map((image, index) => {
           return (
