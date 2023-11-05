@@ -56,8 +56,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="mt-20 flex h-screen w-screen flex-col items-center justify-center overflow-x-hidden">
-      <h1 className="text-3xl font-semibold">
+    <main className="mt-20 flex h-screen  flex-col items-center justify-center ">
+      <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
         Welcome to next store built with next js
       </h1>
       <FeaturedProducts />

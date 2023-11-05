@@ -70,11 +70,14 @@
 .slider-track {
   display: flex;
   width: calc(300px * 20);
+  overflow-x: hidden;
   animation: slider 20s linear infinite;
   gap: 25px;
 }
 
 .slider {
-  width: 100%;
+  width: 98%;
   overflow: hidden;
+  margin-bottom: 25px;
+  margin-inline: auto;
 }
