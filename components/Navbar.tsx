@@ -3,6 +3,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Button, buttonVariants } from "./ui/button";
 import UserButton from "./UserButton";
 import { ShoppingBag } from "lucide-react";
+import Sidebar from "./Sidebar";
 function Navbar() {
   return (
     <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-3 shadow-lg dark:bg-black">
@@ -22,7 +23,7 @@ function Navbar() {
       </span>
       <span className="flex  gap-3">
         <UserButton />
-        {/* <Sidebar /> */}
+        <Sidebar />
         <ThemeToggle />
         <Link
           href="/cart"
