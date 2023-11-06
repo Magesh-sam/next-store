@@ -14,20 +14,23 @@ function Navbar() {
         <Button
           asChild
           variant={"ghost"}
-          className=" hidden border-2 border-primary sm:block"
+          className=" hidden border-2 border-primary sm:flex"
         >
           <Link href="/products" className="text-xl" replace>
             Products
           </Link>
         </Button>
       </span>
-      <span className="flex  gap-3">
+      <span className="mr-2 flex  gap-3">
         <UserButton />
-        <Sidebar />
         <ThemeToggle />
+        <Sidebar />
         <Link
           href="/cart"
-          className={buttonVariants({ variant: "ghost", size: "icon" })}
+          className={`${buttonVariants({
+            variant: "ghost",
+            size: "icon",
+          })} hidden sm:flex `}
           replace
           prefetch={false}
         >
