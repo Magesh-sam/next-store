@@ -1,3 +1,4 @@
+import CategoriesBar from "@/components/CategoriesBar";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import ImageSlider from "@/components/ImageSlider";
 import { Metadata } from "next";
@@ -60,6 +61,7 @@ export default function Home() {
       <h1 className="text-2xl font-semibold md:text-3xl lg:text-4xl">
         Welcome to next store built with next js
       </h1>
+      <CategoriesBar/>
       <FeaturedProducts />
       <ImageSlider />
     </main>
