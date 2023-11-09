@@ -1,8 +1,10 @@
 import axios from "axios";
 import getStripe from "./getStripe";
-import { CartItemProps } from "@/types/types";
+import { CartItemAPIProps, CartItemProps } from "@/types/types";
 
-export const handleCheckout = async (products: CartItemProps[]) => {
+export const handleCheckout = async (
+  products: CartItemProps[] | CartItemAPIProps[],
+) => {
   const stripe = await getStripe();
   const checkoutSession = await axios.post("/api/checkout", {
     products,

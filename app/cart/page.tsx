@@ -1,7 +1,9 @@
 import { api } from "@/axios/config";
+import CheckoutButton from "@/components/CheckoutButton";
 import DeleteItem from "@/components/DeleteItem";
 
 import QuantityBtn from "@/components/QuantityBtn";
+import { Button } from "@/components/ui/button";
 import { CartItemProps } from "@/types/types";
 
 import { getSession } from "@auth0/nextjs-auth0";
@@ -49,6 +51,7 @@ export default async function Cart() {
           </div>
         ))}
       </div>
+      {cartItems.length !== 0 && <CheckoutButton items={cartItems} />}
     </main>
   );
 }
