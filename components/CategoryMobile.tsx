@@ -20,7 +20,7 @@ function CategoryMobile() {
         <span>Categories</span>
         <span>&#8964;</span>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="border-2 border-primary p-5">
+      <DropdownMenuContent className=" h-[300px] overflow-y-scroll border-2 border-primary p-5 ">
         <DropdownMenuLabel>Select Category</DropdownMenuLabel>
         <DropdownMenuSeparator />
 

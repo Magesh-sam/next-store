@@ -15,7 +15,7 @@ function CartList() {
           <LocalCartItem key={item.id} item={item} />
         ))}
       </section>
-      <CheckoutButton items={cart} />
+      {cart.length > 0 && <CheckoutButton items={cart} />}
     </>
   );
 }

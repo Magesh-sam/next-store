@@ -82,6 +82,14 @@
   margin-inline: auto;
 }
 
+.slider:hover {
+  > .slider-track {
+    animation-play-state: paused;
+  }
+}
+
+
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

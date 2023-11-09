@@ -30,7 +30,7 @@ function SearchBar() {
         onChange={(e) => {
           setQuery(e.target.value);
         }}
-        className="flex-1"
+        className="flex-1 pl-3"
       />
       <Button
         variant={"outline"}

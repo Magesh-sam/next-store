@@ -15,7 +15,7 @@ function ImageSlider() {
                 alt={image.alt}
                 width={300}
                 height={300}
-                className="aspect-square w-full"
+                className="w- aspect-square h-auto "
                 priority
               />
             </Link>
