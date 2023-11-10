@@ -6,7 +6,7 @@ import { ShoppingBag } from "lucide-react";
 import Sidebar from "./Sidebar";
 function Navbar() {
   return (
-    <nav className="fixed top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-3 shadow-lg dark:bg-black">
+    <nav className="fixed left-0 top-0 z-20 flex w-screen items-center  justify-between bg-white p-3 px-3 shadow-lg dark:bg-black">
       <span className="flex items-center gap-10">
         <Link href="/" className="text-2xl font-bold" replace>
           Next-Store🛍️

@@ -7,7 +7,6 @@ import { ProductProps } from "@/types/types";
 import { notFound } from "next/navigation";
 import SingleCartButton from "@/components/SingleCartButton";
 import SingleWishlistButton from "@/components/SingleWishlistButton";
-import { getSession } from "@auth0/nextjs-auth0";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const productId = parseInt(params.id);
@@ -90,12 +89,13 @@ export default async function SingleProduct({
       </main>
     );
   }
-  const session = await getSession();
-  const uid = session?.user?.email;
-  console.log("single product page session", uid);
-  const { data }: { data: ProductProps } = await axios.get(
-    `https://dummyjson.com/products/${productId}`,
-  );
+  const {
+    data,
+  }: {
+    data: ProductProps & {
+      images: string[];
+    };
+  } = await axios.get(`https://dummyjson.com/products/${productId}`);
   const cartItem = {
     id: data.id,
     title: data.title,
@@ -109,24 +109,40 @@ export default async function SingleProduct({
     image: data.thumbnail,
     price: data.price,
   };
+  const imageArray = data.images;
+
   return (
-    <main className=" flex h-screen w-screen  items-center justify-center  ">
-      <div className="max-w-600[px] space-y-5 rounded-lg px-4 py-8 shadow-lg dark:border dark:border-primary">
+    <main className=" mt-20 flex items-center justify-center ">
+      <div className="max-w-600[px] m-5 space-y-5 rounded-lg px-4 py-8 shadow-lg ">
+        <h1 className="text-3xl font-bold">{data.title}</h1>
+
         <section>
           <Image
             src={data.thumbnail}
             alt={data.title}
             width={500}
             height={500}
+            className="h-auto w-full"
           />
         </section>
-        <section className=" flex flex-col gap-3 ">
-          <h1 className="text-3xl font-bold">{data.title}</h1>
+        <section className="flex flex-wrap  gap-2">
+          {imageArray.map((image) => (
+            <Image
+              key={image}
+              src={image}
+              alt={data.title}
+              width={150}
+              height={150}
+              className="h-[150px] w-[150px] object-cover"
+            />
+          ))}
+        </section>
+        <section className=" flex flex-col gap-3  ">
           <h3>{data.description}</h3>
           <div className="w-100% max-w-[180px]">
             <Rating value={data.rating} readOnly />
           </div>
-          <span className="flex justify-between">
+          <span className="flex flex-wrap justify-between gap-y-3">
             <SingleWishlistButton product={wishlistItem} />
             <SingleCartButton product={cartItem} />
           </span>
