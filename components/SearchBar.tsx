@@ -41,6 +41,7 @@ function SearchBar() {
             "/products/search" + "?" + createQueryString("q", Query),
           );
         }}
+        disabled={Query.length === 0}
       >
         <Search />
       </Button>

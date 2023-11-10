@@ -13,7 +13,7 @@ function ProductList({ products }: { products: ProductProps[] }) {
         {products.map((product) => (
           <Product key={product.id} item={product} />
         ))}
-        <ScrollToTop />C
+        <ScrollToTop />
       </section>
     </section>
   );

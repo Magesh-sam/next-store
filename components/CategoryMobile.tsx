@@ -11,6 +11,8 @@ import {
 import { productCategories } from "@/misc/misc";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronDown } from "lucide-react";
+
 function CategoryMobile() {
   const currentPath = usePathname();
 
@@ -18,7 +20,7 @@ function CategoryMobile() {
     <DropdownMenu>
       <DropdownMenuTrigger className=" mx-3 flex  items-center gap-3 self-end rounded-md border-2 border-primary p-2 lg:hidden">
         <span>Categories</span>
-        <span>&#8964;</span>
+        <ChevronDown />
       </DropdownMenuTrigger>
       <DropdownMenuContent className=" h-[300px] overflow-y-scroll border-2 border-primary p-5 ">
         <DropdownMenuLabel>Select Category</DropdownMenuLabel>
