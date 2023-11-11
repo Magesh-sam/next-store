@@ -9,7 +9,11 @@ function ImageSlider() {
       <div className="slider-track">
         {imageSlider.map((image, index) => {
           return (
-            <Link href={image.path} key={index}>
+            <Link
+              href={image.path}
+              key={index}
+              className="border-primary hover:border-2"
+            >
               <Image
                 src={image.src}
                 alt={image.alt}

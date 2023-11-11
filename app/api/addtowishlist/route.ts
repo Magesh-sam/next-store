@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       price: product.price,
       uid,
     });
-   
+
     return NextResponse.json({
       success: true,
       status: 200,

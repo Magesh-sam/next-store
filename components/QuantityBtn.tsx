@@ -49,7 +49,6 @@ function QuantityBtn({
     });
     setIsDecrementUpdating(false);
   };
-  console.log(quantityState);
   return (
     <div className="flex items-center gap-x-3">
       <Button disabled={isIncrementUpdating} onClick={incrementQty}>

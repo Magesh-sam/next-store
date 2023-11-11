@@ -17,7 +17,7 @@ function Categories() {
             currentPath === category.path
               ? "underline underline-offset-4"
               : "font-normal"
-          }`}
+          } underline-offset-4 hover:underline`}
         >
           {category.category}
         </Link>

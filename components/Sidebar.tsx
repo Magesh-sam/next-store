@@ -17,13 +17,13 @@ function Sidebar() {
       <SheetTrigger className=" sm:hidden">
         <Equal aria-label="open sidebar" role="button" />
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle>Next-Store🛍️</SheetTitle>
         </SheetHeader>
         <SheetDescription>
           <SheetTitle>Categories</SheetTitle>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 ">
             {productCategories.map((category) => (
               <Link
                 key={category.category}

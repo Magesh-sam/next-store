@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { CartItemAPIProps, CartItemProps } from "@/types/types";
 import { handleCheckout } from "@/stripe/checkout";
+import { api } from "@/axios/config";
 function CheckoutButton({
   items,
 }: {
@@ -11,6 +12,7 @@ function CheckoutButton({
   const checkoutCart = async () => {
     try {
       await handleCheckout(items);
+      
     } catch (err) {
       console.log(err);
     }
