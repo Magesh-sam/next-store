@@ -14,8 +14,12 @@ function CartList() {
         {cart.map((item: CartItemAPIProps) => (
           <LocalCartItem key={item.id} item={item} />
         ))}
+        {cart.length > 0 && (
+          <div className="col-span-full mb-8 mt-3 flex items-center justify-center">
+            <CheckoutButton items={cart} />
+          </div>
+        )}
       </section>
-      {cart.length > 0 && <CheckoutButton items={cart} />}
     </>
   );
 }

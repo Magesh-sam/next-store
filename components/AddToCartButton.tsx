@@ -14,12 +14,13 @@ import { addToCart } from "@/redux/Slices/cartSlice";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/navigation";
 import { api } from "@/axios/config";
+import { Skeleton } from "./ui/skeleton";
 function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
   const dispatch = useDispatch<AppDispatch>();
   const { user, isLoading } = useUser();
   const router = useRouter();
   if (isLoading) {
-    return <> </>;
+    return <Skeleton className="h-8 w-8" />;
   }
 
   const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {

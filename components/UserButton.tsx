@@ -13,13 +13,14 @@ import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import Link from "next/link";
 import { User } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Skeleton } from "./ui/skeleton";
 
 export default function UserButton() {
   const { user, isLoading } = useUser();
 
   const router = useRouter();
 
-  if (isLoading) return <> </>;
+  if (isLoading) return <Skeleton className="h-8 w-8 rounded-full " />;
 
   return (
     <DropdownMenu>

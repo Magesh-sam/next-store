@@ -4,6 +4,8 @@ import { Button, buttonVariants } from "./ui/button";
 import UserButton from "./UserButton";
 import { ShoppingBag } from "lucide-react";
 import Sidebar from "./Sidebar";
+import { Suspense } from "react";
+import { UserButtonSkeleton } from "./Skeletons";
 function Navbar() {
   return (
     <nav className="sticky left-0 top-0 z-20 flex  items-center  justify-between bg-white p-3  shadow-lg dark:bg-black">
@@ -22,7 +24,9 @@ function Navbar() {
         </Button>
       </span>
       <span className="mr-2 flex  gap-3">
-        <UserButton />
+        <Suspense fallback={<UserButtonSkeleton />}>
+          <UserButton />
+        </Suspense>
         <ThemeToggle />
         <Sidebar />
         <Link

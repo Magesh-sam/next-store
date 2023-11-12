@@ -3,7 +3,8 @@ import { ProductProps } from "@/types/types";
 import ProductList from "@/components/ProductList";
 import axios from "axios";
 import Categories from "@/components/Categories";
-import CategoryMobile from "@/components/CategoryMobile";
+import { Suspense } from "react";
+import { CategorySkeleton, ProductListSkeleton } from "@/components/Skeletons";
 
 export const metadata: Metadata = {
   title: "Next Store | Products",
@@ -46,8 +47,12 @@ async function page() {
 
   return (
     <main className=" flex gap-3 bg-background">
-      <Categories />
-      <ProductList products={products} />
+      <Suspense fallback={<CategorySkeleton />}>
+        <Categories />
+      </Suspense>
+      <Suspense fallback={<ProductListSkeleton />}>
+        <ProductList products={products} />
+      </Suspense>
     </main>
   );
 }

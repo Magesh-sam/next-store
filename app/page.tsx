@@ -1,7 +1,9 @@
 import CategoriesBar from "@/components/CategoriesBar";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import ImageSlider from "@/components/ImageSlider";
+import { ImageSliderSkeleton } from "@/components/Skeletons";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Next Store",
@@ -60,7 +62,9 @@ export default function Home() {
     <main className="mt-3 flex min-h-screen  flex-col items-center justify-center ">
       <CategoriesBar />
       <FeaturedProducts />
-      <ImageSlider />
+      <Suspense fallback={<ImageSliderSkeleton />}>
+        <ImageSlider />
+      </Suspense>
     </main>
   );
 }
