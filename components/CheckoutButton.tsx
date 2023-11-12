@@ -12,7 +12,6 @@ function CheckoutButton({
   const checkoutCart = async () => {
     try {
       await handleCheckout(items);
-      
     } catch (err) {
       console.log(err);
     }

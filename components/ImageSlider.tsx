@@ -12,14 +12,14 @@ function ImageSlider() {
             <Link
               href={image.path}
               key={index}
-              className="border-primary hover:border-2"
+              className=" border-2 border-transparent hover:border-primary"
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 width={300}
                 height={300}
-                className="w- aspect-square h-auto "
+                className=" aspect-square h-auto "
                 priority
               />
             </Link>

@@ -1,15 +1,21 @@
 import { api } from "@/axios/config";
+import CartItem from "@/components/CartItem";
 import CheckoutButton from "@/components/CheckoutButton";
 import DeleteItem from "@/components/DeleteItem";
+import { DeleteProduct } from "@/components/DeleteProduct";
 
 import QuantityBtn from "@/components/QuantityBtn";
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { decrementQuantity, incrementQuantity } from "@/redux/Slices/cartSlice";
 import { CartItemProps } from "@/types/types";
 
 import { getSession } from "@auth0/nextjs-auth0";
+import image from "next/image";
 
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { title } from "process";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -28,30 +34,17 @@ export default async function Cart() {
     .then((response) => response.data.cartItems);
 
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-center">
-      <h1>Cart</h1>
-      <div className="flex flex-col gap-y-5">
+    <main className="mb-5 flex justify-center">
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cartItems.map((item: CartItemProps) => (
-          <div key={item.docId} className="flex">
-            <Image
-              src={item.image}
-              alt={item.title}
-              width={200}
-              height={200}
-              className="w-200 aspect-square"
-            />
-            <div className="flex flex-col justify-between p-3 ">
-              <h3>{item.title}</h3>
-              <p>${item.price}</p>
-              <div className="flex items-center justify-between gap-3">
-                <QuantityBtn quantity={item.quantity} productId={item.docId} />
-                <DeleteItem id={item.docId} type="cartitems" />
-              </div>
-            </div>
-          </div>
+          <CartItem key={item.docId} item={item} />
         ))}
-      </div>
-      {cartItems.length !== 0 && <CheckoutButton items={cartItems} />}
+        {cartItems.length !== 0 && (
+          <div className="col-span-full mt-3 flex items-center justify-center">
+            <CheckoutButton items={cartItems} />
+          </div>
+        )}
+      </section>
     </main>
   );
 }

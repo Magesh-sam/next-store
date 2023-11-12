@@ -1,13 +1,18 @@
-import { CartItemProps, ProductProps } from "@/types/types";
-import Image from "next/image";
-
+import React from "react";
 import DeleteItem from "./DeleteItem";
 import QuantityBtn from "./QuantityBtn";
 import { Card, CardHeader, CardTitle, CardFooter } from "./ui/card";
+import { WishListItemProps } from "@/types/types";
+import WishlistToCartBtn from "./WishlistToCartBtn";
+import Image from "next/image";
 
-// BUG This is not working component
-
-function CartItem({ item }: { item: CartItemProps }) {
+function WishlistItem({
+  item,
+  userId,
+}: {
+  item: WishListItemProps;
+  userId: string;
+}) {
   return (
     <Card className="  group  relative w-[280px]   max-w-[280px] overflow-hidden bg-background shadow-md hover:border-primary dark:bg-[#383838] ">
       <CardHeader className=" items-center rounded-t-md bg-white ">
@@ -16,6 +21,7 @@ function CartItem({ item }: { item: CartItemProps }) {
           width={250}
           height={250}
           alt={item.title}
+ 
           className="h-[250px] w-[250px] transition-all duration-200 ease-in-out "
         />
       </CardHeader>
@@ -24,11 +30,11 @@ function CartItem({ item }: { item: CartItemProps }) {
       </CardTitle>
       <p className="text-center font-bold">${item.price}</p>
       <CardFooter className="mt-2 flex items-center justify-between ">
-        <QuantityBtn quantity={item.quantity} productId={item.docId} />
-        <DeleteItem id={item.docId} type="cartitems" />
+        <WishlistToCartBtn item={{ ...item, quantity: 1 }} userId={userId} />
+        <DeleteItem id={item.docId} type="wishlist" />
       </CardFooter>
     </Card>
   );
 }
 
-export default CartItem;
+export default WishlistItem;

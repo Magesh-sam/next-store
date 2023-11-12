@@ -47,8 +47,8 @@ function AddToWishlistButton({ product }: { product: WishListItemAPIProps }) {
             description: `Product: ${product.title}`,
           });
 
-          router.replace("/wishlist");
-          router.refresh();
+          // router.replace("/wishlist");
+          // router.refresh();
         } else {
           toast({
             title: "Error adding to wishlist",

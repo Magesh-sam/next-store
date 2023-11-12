@@ -38,7 +38,7 @@ function DeleteItem({
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="mx-auto   flex items-center justify-between rounded-lg bg-red-600 p-2 hover:bg-red-700">
+      <AlertDialogTrigger className=" rounded-lg bg-red-600 p-2 hover:bg-red-700">
         <Trash2 />
       </AlertDialogTrigger>
       <AlertDialogContent>
