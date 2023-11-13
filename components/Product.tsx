@@ -22,8 +22,8 @@ function Product({ item }: { item: ProductProps }) {
   const { title, thumbnail, price, id } = item;
   const path = "/products/" + id;
   return (
-    <Link href={path}>
-      <Card className="  group  relative w-[280px]   max-w-[280px] overflow-hidden bg-background shadow-md hover:border-primary dark:bg-[#383838] ">
+    <Card className="  group  relative w-[280px]   max-w-[280px] overflow-hidden bg-background shadow-md hover:border-primary dark:bg-[#383838] ">
+      <Link href={path}>
         <CardHeader className=" items-center rounded-t-md bg-white ">
           <Image
             src={thumbnail}
@@ -37,13 +37,13 @@ function Product({ item }: { item: ProductProps }) {
         <CardTitle className=" mt-2 truncate  px-3 text-center text-xl ">
           {title}
         </CardTitle>
-        <CardFooter className="mt-2 flex items-center justify-between">
-          <AddToWishlistButton product={wishlistItem} />
-          <p className="font-bold">${price}</p>
-          <AddToCartButton item={cartItem} />
-        </CardFooter>
-      </Card>
-    </Link>
+      </Link>
+      <CardFooter className="mt-2 flex items-center justify-between">
+        <AddToWishlistButton product={wishlistItem} />
+        <p className="font-bold">${price}</p>
+        <AddToCartButton item={cartItem} />
+      </CardFooter>
+    </Card>
   );
 }
 

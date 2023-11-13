@@ -1,4 +1,5 @@
 "use server";
+
 import { db } from "@/firebase/config";
 import { CartItemAPIProps, WishListItemAPIProps } from "@/types/types";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
@@ -30,23 +31,27 @@ export async function getCartItems(uid: string) {
 
 // export const fetchCartItems = getCartItems.bind(this);
 
-export async function addToCart(product: CartItemAPIProps, uid: string) {
+export async function addToCartToDB(
+  product: CartItemAPIProps,
+  uid: string | null | undefined,
+) {
   try {
-    await addDoc(cartItemsRef, {
+    const data = await addDoc(cartItemsRef, {
       image: product.image,
       title: product.title,
       price: product.price,
       quantity: 1,
       uid,
     });
-    revalidatePath("/cart");
-    redirect("/cart");
   } catch (err) {
     console.error(err);
     return {
       message: "Database Error: Failed to add product to cart",
     };
   }
+  revalidatePath("/cart");
+
+  redirect("/cart");
 }
 
 export async function addToWishlist(

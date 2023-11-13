@@ -1,61 +1,30 @@
-"use client";
 import { ShoppingBag } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
-import { useDispatch } from "react-redux";
-import {
-  CartItemAPIProps,
-  ProductProps,
-  WishListItemAPIProps,
-  WishListItemProps,
-} from "@/types/types";
-import { AppDispatch } from "@/redux/store";
-import { addToCart } from "@/redux/Slices/cartSlice";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { useRouter } from "next/navigation";
-import { api } from "@/axios/config";
-import { Skeleton } from "./ui/skeleton";
-function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
-  const dispatch = useDispatch<AppDispatch>();
-  const { user, isLoading } = useUser();
-  const router = useRouter();
-  if (isLoading) {
-    return <Skeleton className="h-8 w-8" />;
+import { CartItemAPIProps } from "@/types/types";
+
+import { addToCartToDB } from "@/lib/actions";
+import LocalCartButton from "./LocalCartButton";
+import { getSession } from "@auth0/nextjs-auth0";
+async function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
+  const session = await getSession();
+
+  if (!session) {
+    return <LocalCartButton productToDispatch={product} />;
   }
-
-  const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (!user) {
-      const productToDispatch = {
-        ...product,
-        quantity: 1,
-      };
-      dispatch(addToCart(productToDispatch));
-      router.push("/localcart");
-      router.refresh();
-    }
-
-    const uid = user?.email;
-    await api
-      .post("/addtocart", { product, uid })
-      .then(() => {
-        router.push("/cart");
-        router.refresh();
-      })
-      .catch((err) => console.log(err));
-  };
-
+  const addCartItemToDB = addToCartToDB.bind(null, product, session.user.email);
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      aria-label="Add to cart"
-      title="Add to cart"
-      className="hover:cursor-pointer hover:bg-primary hover:text-secondary "
-      onClick={(e) => handleAddToCart(e)}
-    >
-      <ShoppingBag />
-    </Button>
+    <form action={addCartItemToDB}>
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label="Add to cart"
+        title="Add to cart"
+        className="hover:cursor-pointer hover:bg-primary hover:text-secondary "
+      >
+        <ShoppingBag />
+      </Button>
+    </form>
   );
 }
 
