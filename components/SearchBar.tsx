@@ -21,7 +21,7 @@ function SearchBar() {
     [searchParams],
   );
   return (
-    <div className="item-center flex">
+    <div className="flex justify-center">
       <input
         type="search"
         name="product search"
@@ -30,7 +30,7 @@ function SearchBar() {
         onChange={(e) => {
           setQuery(e.target.value);
         }}
-        className="flex-1 rounded-md border-2 pl-3"
+        className="w-[60%] max-w-[60%] rounded-md border-2 pl-3"
       />
       <Button
         variant={"outline"}

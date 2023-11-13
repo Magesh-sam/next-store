@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="mt-3 flex min-h-screen  flex-col items-center justify-center ">
+    <main className="mt-20 flex min-h-screen  flex-col items-center justify-center ">
       <CategoriesBar />
       <FeaturedProducts />
       <Suspense fallback={<ImageSliderSkeleton />}>

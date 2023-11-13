@@ -42,7 +42,7 @@ export default async function Home({
     .then((res) => res.data);
   return (
     <main className=" flex gap-5 bg-background">
-      <Categories />
+      {/* <Categories /> */}
       <ProductList products={products} />
     </main>
   );

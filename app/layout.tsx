@@ -13,7 +13,7 @@ import { Lora } from "next/font/google";
 import { Providers } from "@/redux/Providers";
 import { Toaster } from "@/components/ui/toaster";
 
-const lora = Lora({ subsets: ["latin"] });
+export const lora = Lora({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Next Store",

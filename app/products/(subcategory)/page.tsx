@@ -47,9 +47,9 @@ async function page() {
 
   return (
     <main className=" flex gap-3 bg-background">
-      <Suspense fallback={<CategorySkeleton />}>
+      {/* <Suspense fallback={<CategorySkeleton />}>
         <Categories />
-      </Suspense>
+      </Suspense> */}
       <Suspense fallback={<ProductListSkeleton />}>
         <ProductList products={products} />
       </Suspense>

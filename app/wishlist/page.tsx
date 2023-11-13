@@ -8,6 +8,8 @@ import DeleteItem from "@/components/DeleteItem";
 import { WishListItemProps } from "@/types/types";
 import WishlistToCartBtn from "@/components/WishlistToCartBtn";
 import WishlistItem from "@/components/WishlistItem";
+import { Suspense } from "react";
+import { ProductListSkeleton } from "@/components/Skeletons";
 
 export default async function Wishlist() {
   const session = await getSession();
@@ -36,11 +38,13 @@ export default async function Wishlist() {
 
     return (
       <main className="mt-3 flex justify-center ">
-        <section className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {wishlist.map((item: WishListItemProps) => (
-            <WishlistItem key={item.docId} item={item} userId={user?.email} />
-          ))}
-        </section>
+        <Suspense fallback={<ProductListSkeleton />}>
+          <section className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {wishlist.map((item: WishListItemProps) => (
+              <WishlistItem key={item.docId} item={item} userId={user?.email} />
+            ))}
+          </section>
+        </Suspense>
       </main>
     );
   }

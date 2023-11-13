@@ -2,7 +2,8 @@ import { api } from "@/axios/config";
 import CartItem from "@/components/CartItem";
 import CheckoutButton from "@/components/CheckoutButton";
 
-import { ProductListSkeleton } from "@/components/Skeletons";
+import { ProductListSkeleton, ProductSkeleton } from "@/components/Skeletons";
+import { getCartItems } from "@/lib/actions";
 
 import { CartItemProps } from "@/types/types";
 
@@ -21,18 +22,16 @@ export default async function Cart() {
     redirect("/localcart");
   }
 
-  const cartItems = await api
-    .post("/getcart", {
-      id: user?.email,
-    })
-    .then((response) => response.data.cartItems);
+  const cartItems: CartItemProps[] = await getCartItems(user.email);
 
   return (
     <main className="mb-5 flex justify-center">
       <Suspense fallback={<ProductListSkeleton />}>
         <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {cartItems.map((item: CartItemProps) => (
-            <CartItem key={item.docId} item={item} />
+          {cartItems.map((item) => (
+            <Suspense key={item.docId} fallback={<ProductSkeleton />}>
+              <CartItem key={item.docId} item={item} />
+            </Suspense>
           ))}
           {cartItems.length !== 0 && (
             <div className="col-span-full mt-3 flex items-center justify-center">

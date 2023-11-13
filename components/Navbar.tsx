@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import { UserButtonSkeleton } from "./Skeletons";
 function Navbar() {
   return (
-    <nav className="sticky left-0 top-0 z-20 flex  items-center  justify-between bg-white p-3  shadow-lg dark:bg-black">
+    <nav className="fixed left-0 top-0 z-20 flex w-full  items-center  justify-between bg-white p-3  shadow-lg dark:bg-black">
       <span className="flex items-center gap-10">
         <Link href="/" className="text-2xl font-bold" replace>
           Next-Store🛍️

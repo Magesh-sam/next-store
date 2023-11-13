@@ -29,19 +29,21 @@ export function CategorySkeleton() {
   );
 }
 
+export function ProductSkeleton() {
+  return <Skeleton className="h-90 w-90 rounded-md" />;
+}
 export function ProductListSkeleton() {
   return (
     <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
-      <Skeleton className="h-96 w-full" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
+      <Skeleton className="h-60 w-60" />
     </div>
   );
 }
