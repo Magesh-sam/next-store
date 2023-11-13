@@ -47,7 +47,6 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "Next Store",
   publisher: "Mageshkannan",
-  colorScheme: "dark",
 };
 
 export default function RootLayout({

@@ -34,16 +34,18 @@ export function ProductSkeleton() {
 }
 export function ProductListSkeleton() {
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
-      <Skeleton className="h-60 w-60" />
+    <div className="mt-20 flex w-full items-center justify-center ">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+        <Skeleton className="h-60 w-60" />
+      </div>
     </div>
   );
 }

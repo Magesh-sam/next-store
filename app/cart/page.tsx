@@ -25,7 +25,7 @@ export default async function Cart() {
   const cartItems: CartItemProps[] = await getCartItems(user.email);
 
   return (
-    <main className="mb-5 flex justify-center">
+    <main className="mb-5 mt-20 flex justify-center">
       <Suspense fallback={<ProductListSkeleton />}>
         <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {cartItems.map((item) => (
