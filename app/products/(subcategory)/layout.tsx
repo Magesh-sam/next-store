@@ -1,5 +1,4 @@
 import Categories from "@/components/Categories";
-import { lora } from "../../layout";
 import SearchBar from "@/components/SearchBar";
 export default function RootLayout({
   children,
