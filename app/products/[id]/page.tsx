@@ -114,7 +114,9 @@ export default async function SingleProduct({
   return (
     <main className=" mt-20 flex items-center justify-center ">
       <div className="max-w-600[px] m-5 space-y-5 rounded-lg px-4 py-8 shadow-lg ">
-        <h1 className="text-3xl font-bold">{data.title}</h1>
+        <h1 className="text-3xl font-bold">
+          {data.title} - ${data.price}
+        </h1>
 
         <section>
           <Image

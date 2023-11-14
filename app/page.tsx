@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nextstore-stripe.vercel.app"),
   title: "Next Store",
   description: "An E-commerce website built with Next.js, Stripe",
   keywords: [
@@ -28,26 +29,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Next Store",
     description: "An E-commerce website built with Next.js, Stripe",
-    images: [
-      {
-        url: "https://nextstore-stripe.vercel.app/next-store-og.png",
-        width: 1200,
-        height: 600,
-        alt: "next store",
-      },
-    ],
+    images: "/next-store-og.png",
   },
   twitter: {
     title: "Next Store",
     description: "An E-commerce website built with Next.js, Stripe",
-    images: [
-      {
-        url: "https://nextstore-stripe.vercel.app/next-store-og.png",
-        width: 1200,
-        height: 600,
-        alt: "next store",
-      },
-    ],
+    images:"/next-store-og.png",
   },
   generator: "Next.js",
   applicationName: "Next Store",
@@ -55,7 +42,6 @@ export const metadata: Metadata = {
   colorScheme: "dark",
 };
 
-// TODO: make it responsive and fix the overflow
 
 export default function Home() {
   return (
