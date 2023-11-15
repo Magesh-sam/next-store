@@ -37,7 +37,6 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "Next Store",
   publisher: "Mageshkannan",
-  colorScheme: "dark",
 };
 
 async function page() {
@@ -47,9 +46,6 @@ async function page() {
 
   return (
     <main className=" flex gap-3 bg-background">
-      {/* <Suspense fallback={<CategorySkeleton />}>
-        <Categories />
-      </Suspense> */}
       <Suspense fallback={<ProductListSkeleton />}>
         <ProductList products={products} />
       </Suspense>

@@ -1,8 +1,21 @@
 "use server";
 
 import { db } from "@/firebase/config";
-import { CartItemAPIProps, WishListItemAPIProps } from "@/types/types";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+  CartItemAPIProps,
+  CartItemProps,
+  WishListItemAPIProps,
+} from "@/types/types";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -31,24 +44,47 @@ export async function getCartItems(uid: string) {
 
 // export const fetchCartItems = getCartItems.bind(this);
 
-export async function addToCartToDB(
-  product: CartItemAPIProps,
-  uid: string | null | undefined,
-) {
+export async function addToCartToDB(product: CartItemAPIProps, uid: string) {
   try {
-    const data = await addDoc(cartItemsRef, {
-      image: product.image,
-      title: product.title,
-      price: product.price,
-      quantity: 1,
-      uid,
-    });
+    const cartItems = await getCartItems(uid);
+
+    const data = cartItems.find(
+      (item: CartItemProps) => item.id === product.id,
+    );
+    if (data) {
+      const docRef = doc(db, "cartitems", data.docId);
+      try {
+        await updateDoc(docRef, {
+          quantity: data.quantity + 1,
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      try {
+        await addDoc(cartItemsRef, {
+          id: product.id,
+          image: product.image,
+          title: product.title,
+          price: product.price,
+          quantity: 1,
+          uid,
+        });
+        console.log("added product to cart");
+      } catch (err) {
+        console.error(err);
+        return {
+          message: "Database Error: Failed to add product to cart",
+        };
+      }
+    }
   } catch (err) {
     console.error(err);
     return {
       message: "Database Error: Failed to add product to cart",
     };
   }
+
   revalidatePath("/cart");
 
   redirect("/cart");
@@ -60,6 +96,7 @@ export async function addToWishlist(
 ) {
   try {
     await addDoc(wishlistRef, {
+      id: product.id,
       image: product.image,
       title: product.title,
       price: product.price,
