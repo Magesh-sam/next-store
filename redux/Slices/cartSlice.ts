@@ -9,14 +9,19 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItemAPIProps>) => {
-      state.cart.push(action.payload);
+      const { id, quantity } = action.payload;
+      const existingItem = state.cart.find((item) => item.id === id);
+
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        state.cart.push(action.payload);
+      }
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
     },
-    // toggleCart: (state) => {
-    //   state.isCartOpen = !state.isCartOpen;
-    // },
+
     incrementQuantity: (state, action: PayloadAction<number>) => {
       state.cart = state.cart.map((item) => {
         if (item.id === action.payload) {

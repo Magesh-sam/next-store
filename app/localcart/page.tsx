@@ -10,11 +10,11 @@ export default async function LocalCart() {
   if (user) {
     redirect("/cart");
   }
-  return (
-    <main className="mt-10 flex h-screen items-center justify-center">
-      <Suspense fallback={<ProductListSkeleton/>} >
 
-      <LocalCartList />
+  return (
+    <main className="mt-20 flex h-screen items-center justify-center">
+      <Suspense fallback={<ProductListSkeleton />}>
+        <LocalCartList />
       </Suspense>
     </main>
   );

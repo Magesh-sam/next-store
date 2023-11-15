@@ -21,13 +21,20 @@ export default async function Wishlist() {
     .then((res) => res.data)
     .catch((err) => err);
 
-  if (data.message) {
+  if (data.wishlist.length === 0) {
     return (
-      <main className="flex h-screen w-screen flex-col items-center justify-center">
-        <h1 className="text-5xl">Wishlist</h1>
-        <p className="text-3xl font-bold text-red-400">{data.message}</p>
+      <main className=" flex h-screen flex-col items-center justify-center gap-3">
+        <h1 className="text-3xl font-semibold">
+          No Items found in the wishlist 😔
+        </h1>
+        <Image
+          src="/empty_wishlist.svg"
+          alt="Empty cart"
+          width={700}
+          height={600}
+        />
         <Link href="/products" className={buttonVariants({})}>
-          Back to Shopping🛍️
+          Explore Products
         </Link>
       </main>
     );
@@ -37,9 +44,9 @@ export default async function Wishlist() {
     const wishlist = data.wishlist;
 
     return (
-      <main className="mt-3 flex justify-center ">
+      <main className=" flex justify-center ">
         <Suspense fallback={<ProductListSkeleton />}>
-          <section className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <section className="mb-8 mt-20 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {wishlist.map((item: WishListItemProps) => (
               <WishlistItem key={item.docId} item={item} userId={user?.email} />
             ))}
