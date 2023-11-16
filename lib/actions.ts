@@ -5,12 +5,13 @@ import {
   CartItemAPIProps,
   CartItemProps,
   WishListItemAPIProps,
+  WishListItemProps,
 } from "@/types/types";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
-  getDoc,
   getDocs,
   query,
   updateDoc,
@@ -90,24 +91,48 @@ export async function addToCartToDB(product: CartItemAPIProps, uid: string) {
   redirect("/cart");
 }
 
-export async function addToWishlist(
-  product: WishListItemAPIProps,
+export async function addToWishlist_to_Cart(
+  product: WishListItemProps,
   uid: string,
 ) {
+  const item = {
+    id: product.id,
+    image: product.image,
+    title: product.title,
+    price: product.price,
+    quantity: 1,
+    uid,
+  };
   try {
-    await addDoc(wishlistRef, {
-      id: product.id,
-      image: product.image,
-      title: product.title,
-      price: product.price,
-      uid,
-    });
-    revalidatePath("/wishlist");
-    redirect("/wishlist");
+    await deleteDoc(doc(db, "wishlist", product.docId));
   } catch (err) {
     console.error(err);
     return {
       message: "Database Error: Failed to add product to wishlist",
     };
   }
+  await addToCartToDB(item, uid);
+  revalidatePath("/wishlist");
+}
+
+export async function addToWishlist(
+  product: WishListItemAPIProps,
+  uid: string | null | undefined,
+) {
+  try {
+    await addDoc(collection(db, "wishlist"), {
+      id: product.id,
+      image: product.image,
+      title: product.title,
+      price: product.price,
+      uid,
+    });
+    
+  } catch (err) {
+    console.error(err);
+    return {
+      message: "Database Error: Failed to add product to wishlist",
+    };
+  }
+  revalidatePath("wishlist");
 }

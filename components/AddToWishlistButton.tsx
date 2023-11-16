@@ -2,13 +2,14 @@
 import { Heart } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
-import { ProductProps, WishListItemAPIProps } from "@/types/types";
+import { WishListItemAPIProps } from "@/types/types";
 import { useToast } from "./ui/use-toast";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { ToastAction } from "./ui/toast";
 import { useRouter } from "next/navigation";
 import { api } from "@/axios/config";
 import { Skeleton } from "./ui/skeleton";
+import { addToWishlist } from "@/lib/actions";
 
 function AddToWishlistButton({ product }: { product: WishListItemAPIProps }) {
   const { toast } = useToast();
@@ -18,7 +19,7 @@ function AddToWishlistButton({ product }: { product: WishListItemAPIProps }) {
   if (isLoading) {
     return <Skeleton className="h-8 w-8" />;
   }
-  const uid = user?.email;
+  const uid = user?.email || "guest";
   const handleAddToWishlist = async (
     e: React.MouseEvent<HTMLButtonElement>,
   ) => {
@@ -39,23 +40,12 @@ function AddToWishlistButton({ product }: { product: WishListItemAPIProps }) {
       });
       return;
     }
-    await api
-      .post("/addtowishlist", { product, uid })
-      .then((data) => {
-        if (data.data.success) {
-          toast({
-            title: "Added to wishlist successfully",
-            description: `Product: ${product.title}`,
-          });
-
-          // router.replace("/wishlist");
-          // router.refresh();
-        } else {
-          toast({
-            title: "Error adding to wishlist",
-            description: data.data.message,
-          });
-        }
+    await addToWishlist(product, user?.email)
+      .then(() => {
+        toast({
+          title: "Added to wishlist successfully",
+          description: `Product: ${product.title}`,
+        });
       })
       .catch((err) =>
         toast({

@@ -1,47 +1,27 @@
-"use client";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "./ui/button";
-import { CartItemAPIProps, ProductProps } from "@/types/types";
+import { CartItemAPIProps } from "@/types/types";
+import { addToCartToDB } from "@/lib/actions";
+import { getSession } from "@auth0/nextjs-auth0";
+import SingleLocalCartBtn from "./SingleLocalCartBtn";
 
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/redux/Slices/cartSlice";
-import axios from "axios";
-import { useToast } from "./ui/use-toast";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { api } from "@/axios/config";
-
-function SingleCartButton({ product }: { product: CartItemAPIProps }) {
-  const dispatch = useDispatch();
-  const { toast } = useToast();
-  const { user, isLoading } = useUser();
-  const router = useRouter();
-
-  if (isLoading) {
-    return <> </>;
+async function SingleCartButton({ product }: { product: CartItemAPIProps }) {
+  const session = await getSession();
+  if (!session) {
+    return <SingleLocalCartBtn product={product} />;
   }
-  const uid = user?.email;
-
-  const handleAddToCart = async () => {
-    if (!uid || uid.length === 0) {
-      dispatch(addToCart(product));
-      router.replace("/localcart");
-      router.refresh();
-    }
-
-    await api
-      .post("/addtocart", { product, uid })
-      .then(() => {
-        router.replace("/cart");
-        router.refresh();
-      })
-      .catch((err) => toast({ title: "Error", description: err.message }));
-  };
+  const addCartItemToDB = addToCartToDB.bind(
+    null,
+    product,
+    session?.user.email,
+  );
 
   return (
-    <Button onClick={handleAddToCart}>
-      Add to Cart <ShoppingBag className="ml-2" />
-    </Button>
+    <form action={addCartItemToDB}>
+      <Button>
+        Add to Cart <ShoppingBag className="ml-2" />
+      </Button>
+    </form>
   );
 }
 

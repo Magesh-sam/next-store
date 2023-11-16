@@ -1,51 +1,34 @@
-"use client";
 import React from "react";
 import { Button } from "./ui/button";
 import { ShoppingBag } from "lucide-react";
-import { CartItemAPIProps, CartItemProps } from "@/types/types";
-import { api } from "@/axios/config";
-import { useRouter } from "next/navigation";
+import { CartItemAPIProps, WishListItemProps } from "@/types/types";
+
+import { addToWishlist_to_Cart } from "@/lib/actions";
 
 function WishlistToCartBtn({
   item,
   userId,
 }: {
-  item: CartItemProps;
+  item: WishListItemProps;
   userId: string;
 }) {
-  const product: CartItemAPIProps = {
+  const product: WishListItemProps = {
     id: item.id,
     title: item.title,
     image: item.image,
     price: item.price,
-    quantity: 1,
+    docId: item.docId,
+    uid: userId,
   };
 
-  const router = useRouter();
-  const uid = userId;
-
-  const id = item.docId;
-
-  const handleAddToCart = async () => {
-    await api
-      .post("/addtocart", { product, uid })
-      .then(async (res) => {
-        console.log(res);
-        router.push("/cart");
-        router.refresh();
-        await api
-          .post("/deleteitem", { id, type: "wishlist" })
-          .then((res) => console.log(res))
-          .catch((err) => console.log(err));
-        console.log("deleted from wishlist");
-      })
-      .catch((err) => console.log(err));
-  };
+  const addCartItemToDB = addToWishlist_to_Cart.bind(null, product, userId);
 
   return (
-    <Button onClick={handleAddToCart} className="flex items-center gap-3">
-      Add To Cart <ShoppingBag />
-    </Button>
+    <form action={addCartItemToDB}>
+      <Button className="flex items-center gap-3">
+        Add To Cart <ShoppingBag />
+      </Button>
+    </form>
   );
 }
 

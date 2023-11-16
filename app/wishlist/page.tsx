@@ -3,13 +3,12 @@ import { getSession } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import { api } from "@/axios/config";
 import Image from "next/image";
-import AddToCartButton from "@/components/AddToCartButton";
-import DeleteItem from "@/components/DeleteItem";
+
 import { WishListItemProps } from "@/types/types";
-import WishlistToCartBtn from "@/components/WishlistToCartBtn";
 import WishlistItem from "@/components/WishlistItem";
 import { Suspense } from "react";
 import { ProductListSkeleton } from "@/components/Skeletons";
+import { unstable_noStore as noStore } from "next/cache";
 
 export default async function Wishlist() {
   const session = await getSession();
@@ -21,7 +20,7 @@ export default async function Wishlist() {
     .then((res) => res.data)
     .catch((err) => err);
 
-  if (data.wishlist.length === 0) {
+  if (!data.wishlist || data.wishlist.length === 0) {
     return (
       <main className=" flex h-screen flex-col items-center justify-center gap-3">
         <h1 className="text-3xl font-semibold">

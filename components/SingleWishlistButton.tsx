@@ -2,13 +2,13 @@
 import { Heart } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
-import axios from "axios";
 import { ToastAction } from "./ui/toast";
 import { useToast } from "./ui/use-toast";
 import { WishListItemAPIProps } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { api } from "@/axios/config";
+import { Skeleton } from "./ui/skeleton";
 
 function SingleWishlistButton({ product }: { product: WishListItemAPIProps }) {
   const { toast } = useToast();
@@ -16,7 +16,7 @@ function SingleWishlistButton({ product }: { product: WishListItemAPIProps }) {
   const router = useRouter();
 
   if (isLoading) {
-    return <> </>;
+    return <Skeleton className="h-10 w-24" />;
   }
   const uid = user?.email;
 

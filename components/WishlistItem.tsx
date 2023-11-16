@@ -1,6 +1,5 @@
 import React from "react";
 import DeleteItem from "./DeleteItem";
-import QuantityBtn from "./QuantityBtn";
 import { Card, CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { WishListItemProps } from "@/types/types";
 import WishlistToCartBtn from "./WishlistToCartBtn";
@@ -21,7 +20,6 @@ function WishlistItem({
           width={250}
           height={250}
           alt={item.title}
- 
           className="h-[250px] w-[250px] transition-all duration-200 ease-in-out "
         />
       </CardHeader>
@@ -30,7 +28,7 @@ function WishlistItem({
       </CardTitle>
       <p className="text-center font-bold">${item.price}</p>
       <CardFooter className="mt-2 flex items-center justify-between ">
-        <WishlistToCartBtn item={{ ...item, quantity: 1 }} userId={userId} />
+        <WishlistToCartBtn item={item} userId={userId} />
         <DeleteItem id={item.docId} type="wishlist" />
       </CardFooter>
     </Card>
