@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { CartItemAPIProps } from "@/types/types";
 
-import { addToCartToDB } from "@/lib/actions";
+import { addToCart } from "@/lib/actions";
 import LocalCartButton from "./LocalCartButton";
 import { getSession } from "@auth0/nextjs-auth0";
 async function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
@@ -12,7 +12,7 @@ async function AddToCartButton({ item: product }: { item: CartItemAPIProps }) {
   if (!session) {
     return <LocalCartButton productToDispatch={product} />;
   }
-  const addCartItemToDB = addToCartToDB.bind(null, product, session.user.email);
+  const addCartItemToDB = addToCart.bind(null, product, session.user.email);
   return (
     <form action={addCartItemToDB}>
       <Button

@@ -8,19 +8,19 @@ import { WishListItemProps } from "@/types/types";
 import WishlistItem from "@/components/WishlistItem";
 import { Suspense } from "react";
 import { ProductListSkeleton } from "@/components/Skeletons";
-import { unstable_noStore as noStore } from "next/cache";
+import { redirect } from "next/navigation";
+import { getWishlistItems } from "@/lib/actions";
 
 export default async function Wishlist() {
   const session = await getSession();
   const user = session?.user;
-  const data = await api
-    .post("/getwishlist", {
-      id: user?.email,
-    })
-    .then((res) => res.data)
-    .catch((err) => err);
+  if (!user) {
+    redirect("/api/auth/login");
+  }
 
-  if (!data.wishlist || data.wishlist.length === 0) {
+  const wishlist = await getWishlistItems(user?.email);
+
+  if (!wishlist || wishlist.length === 0) {
     return (
       <main className=" flex h-screen flex-col items-center justify-center gap-3">
         <h1 className="text-3xl font-semibold">
@@ -39,19 +39,15 @@ export default async function Wishlist() {
     );
   }
 
-  if (data.wishlist) {
-    const wishlist = data.wishlist;
-
-    return (
-      <main className=" flex justify-center ">
-        <Suspense fallback={<ProductListSkeleton />}>
-          <section className="mb-8 mt-20 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {wishlist.map((item: WishListItemProps) => (
-              <WishlistItem key={item.docId} item={item} userId={user?.email} />
-            ))}
-          </section>
-        </Suspense>
-      </main>
-    );
-  }
+  return (
+    <main className=" flex justify-center ">
+      <Suspense fallback={<ProductListSkeleton />}>
+        <section className="mb-8 mt-20 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {wishlist.map((item: WishListItemProps) => (
+            <WishlistItem key={item.docId} item={item} userId={user?.email} />
+          ))}
+        </section>
+      </Suspense>
+    </main>
+  );
 }

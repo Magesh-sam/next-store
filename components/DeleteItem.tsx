@@ -11,9 +11,12 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "./ui/alert-dialog";
-import { api } from "@/axios/config";
 import { useToast } from "./ui/use-toast";
+import { deleteProduct } from "@/lib/actions";
 import { useRouter } from "next/navigation";
+
+//* Delete Product from firestore
+
 function DeleteItem({
   id,
   type,
@@ -22,16 +25,18 @@ function DeleteItem({
   type: "wishlist" | "cartitems";
 }) {
   const { toast } = useToast();
-
   const router = useRouter();
+
   const handleDelete = async () => {
+    console.log(id, type);
     try {
-      await api.post("/deleteitem", { id, type });
+      console.log("deleting");
+      await deleteProduct(type, id);
       router.refresh();
     } catch (err) {
       toast({
         title: "Error",
-        description: JSON.stringify(err),
+        description: "Failed to delete item",
       });
     }
   };
@@ -39,7 +44,7 @@ function DeleteItem({
   return (
     <AlertDialog>
       <AlertDialogTrigger className=" rounded-lg bg-red-600 p-2 hover:bg-red-700">
-        <Trash2 />
+        <Trash2 color="white" />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -50,7 +55,9 @@ function DeleteItem({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete}>Remove</AlertDialogAction>
+          <AlertDialogAction onClick={() => handleDelete()}>
+            Remove
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

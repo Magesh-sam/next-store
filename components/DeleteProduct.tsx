@@ -14,7 +14,7 @@ import { AppDispatch } from "@/redux/store";
 import { Trash2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { buttonVariants } from "./ui/button";
-
+//* Delete Product from local cart
 export function DeleteProduct({ id }: { id: number }) {
   const dispatch = useDispatch<AppDispatch>();
 
