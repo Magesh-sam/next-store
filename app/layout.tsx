@@ -56,6 +56,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="Y9HXpPfKCW6ZiuEmmFN6WLtJJHYo-QfkZkCq0gAo48o"
+        />
+      </head>
       <body className={lora.className}>
         <UserProvider>
           <Providers>
