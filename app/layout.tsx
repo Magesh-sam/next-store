@@ -12,6 +12,7 @@ import type { Metadata } from "next";
 import { Lora } from "next/font/google";
 import { Providers } from "@/redux/Providers";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/Footer";
 
 export const lora = Lora({ subsets: ["latin"] });
 
@@ -73,7 +74,7 @@ export default function RootLayout({
             >
               <Navbar />
               {children}
-
+              <Footer />
               <Toaster />
               <Analytics />
             </ThemeProvider>

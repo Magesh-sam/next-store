@@ -1,9 +1,8 @@
 import CategoriesBar from "@/components/CategoriesBar";
+import CustomerReview from "@/components/CustomerReview";
 import FeaturedProducts from "@/components/FeaturedProducts";
-import ImageSlider from "@/components/ImageSlider";
-import { ImageSliderSkeleton } from "@/components/Skeletons";
+import HeroSection from "@/components/HeroSection";
 import { Metadata } from "next";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nextstore-stripe.vercel.app"),
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Next Store",
     description: "An E-commerce website built with Next.js, Stripe",
-    images:"/next-store-og.png",
+    images: "/next-store-og.png",
   },
   generator: "Next.js",
   applicationName: "Next Store",
@@ -42,15 +41,12 @@ export const metadata: Metadata = {
   colorScheme: "dark",
 };
 
-
 export default function Home() {
   return (
-    <main className="mt-20 flex min-h-screen  flex-col items-center justify-center ">
-      <CategoriesBar />
+    <main className="flex min-h-screen flex-1 flex-col">
+      <HeroSection />
       <FeaturedProducts />
-      <Suspense fallback={<ImageSliderSkeleton />}>
-        <ImageSlider />
-      </Suspense>
+      <CustomerReview />
     </main>
   );
 }
