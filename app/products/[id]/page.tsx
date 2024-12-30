@@ -72,13 +72,14 @@ export default async function SingleProduct({
 }: {
   params: { id: string };
 }) {
+  console.log("params", params);
   const productId = parseInt(params.id);
 
   if (isNaN(productId)) {
     notFound();
   }
 
-  if (productId <= 0 || productId > 100) {
+  if (productId <= 0 || productId >= 195) {
     return (
       <main className="flex h-screen w-screen flex-col items-center justify-center gap-3 ">
         <h1 className="text-3xl font-semibold">Product not found</h1>
@@ -110,7 +111,6 @@ export default async function SingleProduct({
     price: data.price,
   };
   const imageArray = data.images;
-
   return (
     <main className=" mt-20 flex items-center justify-center ">
       <div className="max-w-600[px] m-5 space-y-5 rounded-lg px-4 py-8 shadow-lg ">
